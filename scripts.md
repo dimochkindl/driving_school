@@ -1,4 +1,4 @@
-#Student script
+# Student
 
 CREATE TABLE IF NOT EXISTS public.student
 (
