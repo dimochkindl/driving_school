@@ -20,6 +20,8 @@ CREATE TABLE IF NOT EXISTS public.student
 
 
 
+
+
 # Employee
 
 ```sql
