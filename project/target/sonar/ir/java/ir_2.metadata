@@ -1,0 +1,2 @@
+app.v1.V1Application#main([Ljava/lang/String;)V
+org.springframework.boot.SpringApplication#run(Ljava/lang/Class;[Ljava/lang/String;)Lorg/springframework/context/ConfigurableApplicationContext;
