@@ -17,8 +17,7 @@ CREATE TABLE IF NOT EXISTS public.student
 - фамилия
 - номер телефона
 - категория(А, B...)
-<br>
-<br>
+<br><br>
 
 # Employee
 
@@ -40,8 +39,7 @@ CREATE TABLE IF NOT EXISTS public.employee
 - фамилия
 - номер телефона
 - опыт работы
-
-
+<br><br>
 
 # Post
 
@@ -65,8 +63,7 @@ CREATE TABLE IF NOT EXISTS public.post
 - специализация
 - название должности
 - внешний ключ на сотрудника, который ее занимает
-
-
+<br><br>
 
 # Car
 
@@ -86,8 +83,7 @@ CREATE TABLE IF NOT EXISTS public.car
 - номер машины
 - модель
 - год выпуска
-
-
+<br><br>
 
 # Theory
 
@@ -107,8 +103,7 @@ CREATE TABLE IF NOT EXISTS public.theory
 - тема
 - цена
 - время
-
-
+<br><br>
 
 # Practice
 
@@ -133,8 +128,7 @@ CREATE TABLE IF NOT EXISTS public.practice
 - дата
 - место
 - цена
-
-
+<br><br>
 
 # Exam
 
@@ -165,6 +159,7 @@ CREATE TABLE IF NOT EXISTS public.exam
 - дата
 - оценка
 - внешние ключи: препод и учащийся
+<br><br>
 
 # Student_practice_relation
 ```sql
@@ -191,8 +186,7 @@ CREATE TABLE IF NOT EXISTS public.student_practice_relation
 ```
 ### Таблица отношений между учащимся и преподавателем через практическое занятие
 #### Поля - id-шники учащегося препода и занятия соответственно
-
-
+<br><br>
 
 # Student_theory_relation
 ```sql
