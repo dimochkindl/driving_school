@@ -3,17 +3,12 @@
 ```sql
 CREATE TABLE IF NOT EXISTS public.student
 (
-    student_id bigint NOT NULL,
-    name character varying(30) COLLATE pg_catalog."default",
-    surname character varying(30) COLLATE pg_catalog."default",
+    id bigint NOT NULL,
+    name character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    surname character varying(30) COLLATE pg_catalog."default" NOT NULL,
     phone_number character varying(20) COLLATE pg_catalog."default" NOT NULL,
     category character varying(3) COLLATE pg_catalog."default",
-    teacher_id integer,
-    CONSTRAINT student_pkey PRIMARY KEY (student_id),
-    CONSTRAINT teacherfk FOREIGN KEY (student_id)
-        REFERENCES public.employee (employee_id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
+    CONSTRAINT pk_student PRIMARY KEY (id)
 )
 
 ```
@@ -23,12 +18,12 @@ CREATE TABLE IF NOT EXISTS public.student
 ```sql
 CREATE TABLE IF NOT EXISTS public.employee
 (
-    employee_id bigint NOT NULL,
-    name character varying(30) COLLATE pg_catalog."default",
-    surname character varying(30) COLLATE pg_catalog."default",
+    id bigint NOT NULL,
+    name character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    surname character varying(30) COLLATE pg_catalog."default" NOT NULL,
     phone_number character varying(15) COLLATE pg_catalog."default" NOT NULL,
     experience real,
-    CONSTRAINT employee_pkey PRIMARY KEY (employee_id)
+    CONSTRAINT pk_employee PRIMARY KEY (id)
 )
 
 ```
@@ -38,11 +33,15 @@ CREATE TABLE IF NOT EXISTS public.employee
 ```sql
 CREATE TABLE IF NOT EXISTS public.post
 (
-    post_id bigint NOT NULL,
+    id bigint NOT NULL,
     specialization character varying(30) COLLATE pg_catalog."default",
     name character varying(30) COLLATE pg_catalog."default",
-    responsibilities character varying(100)[] COLLATE pg_catalog."default",
-    CONSTRAINT post_pkey PRIMARY KEY (post_id)
+    employee_id bigint,
+    CONSTRAINT pk_post PRIMARY KEY (id),
+    CONSTRAINT fk_employee FOREIGN KEY (employee_id)
+        REFERENCES public.employee (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
 )
 
 ```
@@ -52,10 +51,11 @@ CREATE TABLE IF NOT EXISTS public.post
 ```sql
 CREATE TABLE IF NOT EXISTS public.car
 (
-    "number" character varying(10) COLLATE pg_catalog."default" NOT NULL,
+    car_number character varying(10) COLLATE pg_catalog."default" NOT NULL,
     model character varying(40) COLLATE pg_catalog."default",
     year smallint NOT NULL,
-    CONSTRAINT car_pkey PRIMARY KEY ("number")
+    id bigint NOT NULL,
+    CONSTRAINT pk_car PRIMARY KEY (id)
 )
 
 ```
@@ -67,8 +67,9 @@ CREATE TABLE IF NOT EXISTS public.theory
 (
     theme character varying(50) COLLATE pg_catalog."default" NOT NULL,
     price real NOT NULL,
-    "time" timestamp without time zone,
-    CONSTRAINT theory_pkey PRIMARY KEY (theme)
+    tense timestamp without time zone,
+    id bigint NOT NULL,
+    CONSTRAINT pk_theory PRIMARY KEY (id)
 )
 
 ```
@@ -78,57 +79,38 @@ CREATE TABLE IF NOT EXISTS public.theory
 ```sql
 CREATE TABLE IF NOT EXISTS public.practice
 (
-    practice_id bigint NOT NULL,
+    id bigint NOT NULL,
     date timestamp without time zone,
     price real,
     place character varying(50) COLLATE pg_catalog."default",
-    car_id character varying(10) COLLATE pg_catalog."default",
-    CONSTRAINT practice_pkey PRIMARY KEY (practice_id),
-    CONSTRAINT carfk FOREIGN KEY (car_id)
-        REFERENCES public.car ("number") MATCH SIMPLE
+    car_id bigint,
+    CONSTRAINT pk_practice PRIMARY KEY (id),
+    CONSTRAINT fk_car FOREIGN KEY (car_id)
+        REFERENCES public.car (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
 )
 
 ```
 
-# Exam_results
+# Exam
 
 ```sql
-CREATE TABLE IF NOT EXISTS public.exam_results
+CREATE TABLE IF NOT EXISTS public.exam
 (
-    result_id smallint NOT NULL,
+    id bigint NOT NULL,
     exam character varying(40) COLLATE pg_catalog."default",
     date timestamp without time zone,
     grade smallint,
     student_id bigint,
     teacher_id bigint,
-    CONSTRAINT exam_results_pkey PRIMARY KEY (result_id),
-    CONSTRAINT exam_results_student_id_fkey FOREIGN KEY (student_id)
-        REFERENCES public.student (student_id) MATCH SIMPLE
+    CONSTRAINT pk_exam PRIMARY KEY (id),
+    CONSTRAINT fk_student FOREIGN KEY (student_id)
+        REFERENCES public.student (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION,
-    CONSTRAINT exam_results_teacher_id_fkey FOREIGN KEY (teacher_id)
-        REFERENCES public.employee (employee_id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
-)
-
-```
-
-# Employee_post
-```sql
-CREATE TABLE IF NOT EXISTS public.employee_post
-(
-    employee bigint NOT NULL,
-    post_id bigint NOT NULL,
-    CONSTRAINT employee_post_pkey PRIMARY KEY (employee, post_id),
-    CONSTRAINT employee_post_employee_fkey FOREIGN KEY (employee)
-        REFERENCES public.employee (employee_id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION,
-    CONSTRAINT employee_post_post_id_fkey FOREIGN KEY (post_id)
-        REFERENCES public.post (post_id) MATCH SIMPLE
+    CONSTRAINT fk_teacher FOREIGN KEY (teacher_id)
+        REFERENCES public.employee (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
 )
@@ -139,24 +121,26 @@ CREATE TABLE IF NOT EXISTS public.employee_post
 ```sql
 CREATE TABLE IF NOT EXISTS public.student_practice_relation
 (
-    student_id bigint,
-    teacher_id bigint,
-    practice_id bigint,
-    CONSTRAINT student_practice_relation_practice_id_fkey FOREIGN KEY (practice_id)
-        REFERENCES public.practice (practice_id) MATCH SIMPLE
+    student_id bigint NOT NULL,
+    teacher_id bigint NOT NULL,
+    practice_id bigint NOT NULL,
+    CONSTRAINT pk_student_teacher_practice PRIMARY KEY (student_id, teacher_id, practice_id),
+    CONSTRAINT fk_practice FOREIGN KEY (practice_id)
+        REFERENCES public.practice (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION,
-    CONSTRAINT student_practice_relation_student_id_fkey FOREIGN KEY (student_id)
-        REFERENCES public.student (student_id) MATCH SIMPLE
+    CONSTRAINT fk_student FOREIGN KEY (student_id)
+        REFERENCES public.student (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION,
-    CONSTRAINT student_practice_relation_teacher_id_fkey FOREIGN KEY (teacher_id)
-        REFERENCES public.employee (employee_id) MATCH SIMPLE
+    CONSTRAINT fk_teacher FOREIGN KEY (teacher_id)
+        REFERENCES public.employee (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
 )
 
 ```
+
 # Student_theory_relation
 ```sql
 CREATE TABLE IF NOT EXISTS public.student_theory_relation
@@ -165,18 +149,19 @@ CREATE TABLE IF NOT EXISTS public.student_theory_relation
     theory_theme character varying(50) COLLATE pg_catalog."default" NOT NULL,
     date timestamp without time zone,
     grade smallint,
-    teacher_id bigint,
-    CONSTRAINT student_theory_pkey PRIMARY KEY (student_id, theory_theme),
-    CONSTRAINT student_theory_relation_teacher_id_fkey FOREIGN KEY (teacher_id)
-        REFERENCES public.employee (employee_id) MATCH SIMPLE
+    teacher_id bigint NOT NULL,
+    theory_id bigint NOT NULL,
+    CONSTRAINT pk_student_teacher_theory PRIMARY KEY (student_id, teacher_id, theory_id),
+    CONSTRAINT fk_student FOREIGN KEY (student_id)
+        REFERENCES public.student (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION,
-    CONSTRAINT student_theory_student_id_fkey FOREIGN KEY (student_id)
-        REFERENCES public.student (student_id) MATCH SIMPLE
+    CONSTRAINT fk_teacher FOREIGN KEY (teacher_id)
+        REFERENCES public.employee (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION,
-    CONSTRAINT student_theory_theory_theme_fkey FOREIGN KEY (theory_theme)
-        REFERENCES public.theory (theme) MATCH SIMPLE
+    CONSTRAINT fk_theory FOREIGN KEY (theory_id)
+        REFERENCES public.theory (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
 )
