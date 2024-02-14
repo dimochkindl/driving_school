@@ -36,5 +36,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
         run:
-          cd driving_school/project/my_project
+          pushd driving_school/project/my_project  # Переходим в директорию с проектом
           mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=dimochkindl_driving_school
+          popd  # Возвращаемся обратно в предыдущую директорию
