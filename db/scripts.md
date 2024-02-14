@@ -29,9 +29,13 @@ CREATE TABLE IF NOT EXISTS public.employee
     surname character varying(30) COLLATE pg_catalog."default" NOT NULL,
     phone_number character varying(15) COLLATE pg_catalog."default" NOT NULL,
     experience real,
-    CONSTRAINT pk_employee PRIMARY KEY (id)
+    post_id bigint,
+    CONSTRAINT pk_employee PRIMARY KEY (id),
+    CONSTRAINT fk_post FOREIGN KEY (post_id)
+        REFERENCES public.post (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
 )
-
 ```
 ### Сотрудник
 #### Поля:
@@ -39,6 +43,7 @@ CREATE TABLE IF NOT EXISTS public.employee
 - фамилия
 - номер телефона
 - опыт работы
+- внешний ключ - занимаемая должность
 <br><br>
 
 # Post
@@ -49,20 +54,13 @@ CREATE TABLE IF NOT EXISTS public.post
     id bigint NOT NULL,
     specialization character varying(30) COLLATE pg_catalog."default",
     name character varying(30) COLLATE pg_catalog."default",
-    employee_id bigint,
-    CONSTRAINT pk_post PRIMARY KEY (id),
-    CONSTRAINT fk_employee FOREIGN KEY (employee_id)
-        REFERENCES public.employee (id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
+    CONSTRAINT pk_post PRIMARY KEY (id)
 )
-
 ```
 ### Должность сотрудника
 #### Поля:
 - специализация
 - название должности
-- внешний ключ на сотрудника, который ее занимает
 <br><br>
 
 # Car
