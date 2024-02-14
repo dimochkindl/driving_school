@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS public.student
 student_id bigint NOT NULL,
 name character varying(30) COLLATE pg_catalog."default",
 surname character varying(30) COLLATE pg_catalog."default",
-"phone number" character varying(20) COLLATE pg_catalog."default" NOT NULL,
+"phone_number" character varying(20) COLLATE pg_catalog."default" NOT NULL,
 category character varying(3) COLLATE pg_catalog."default",
 teacher_id integer,
 CONSTRAINT student_pkey PRIMARY KEY (student_id),
