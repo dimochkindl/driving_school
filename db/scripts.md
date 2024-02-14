@@ -17,11 +17,7 @@ CREATE TABLE IF NOT EXISTS public.student
 - фамилия
 - номер телефона
 - категория(А, B...)
-
-
-
-
-
+<br>
 # Employee
 
 ```sql
