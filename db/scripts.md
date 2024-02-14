@@ -10,7 +10,6 @@ CREATE TABLE IF NOT EXISTS public.student
     category character varying(3) COLLATE pg_catalog."default",
     CONSTRAINT pk_student PRIMARY KEY (id)
 )
-
 ```
 ### Учащийся
 #### Поля:
