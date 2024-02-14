@@ -35,5 +35,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          cd driving_school/project/  # Переходим в директорию с проектом
+          cd project  # Переходим в директорию с проектом
           mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=dimochkindl_driving_school
