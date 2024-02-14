@@ -18,6 +18,8 @@ CREATE TABLE IF NOT EXISTS public.student
 - номер телефона
 - категория(А, B...)
 <br>
+<br>
+
 # Employee
 
 ```sql
