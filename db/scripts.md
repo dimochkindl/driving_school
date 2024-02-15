@@ -90,7 +90,6 @@ CREATE TABLE IF NOT EXISTS public.theory
 (
     theme character varying(50) COLLATE pg_catalog."default" NOT NULL,
     price real NOT NULL,
-    tense timestamp without time zone,
     id bigint NOT NULL,
     CONSTRAINT pk_theory PRIMARY KEY (id)
 )
@@ -100,7 +99,6 @@ CREATE TABLE IF NOT EXISTS public.theory
 #### Поля:
 - тема
 - цена
-- время
 <br><br>
 
 # Practice
