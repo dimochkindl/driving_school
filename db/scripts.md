@@ -137,17 +137,7 @@ CREATE TABLE IF NOT EXISTS public.exam
     exam character varying(40) COLLATE pg_catalog."default",
     date timestamp without time zone,
     grade smallint,
-    student_id bigint,
-    teacher_id bigint,
-    CONSTRAINT pk_exam PRIMARY KEY (id),
-    CONSTRAINT fk_student FOREIGN KEY (student_id)
-        REFERENCES public.student (id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION,
-    CONSTRAINT fk_teacher FOREIGN KEY (teacher_id)
-        REFERENCES public.employee (id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
+    CONSTRAINT pk_exam PRIMARY KEY (id)
 )
 
 ```
@@ -156,7 +146,6 @@ CREATE TABLE IF NOT EXISTS public.exam
 - название экзамена
 - дата
 - оценка
-- внешние ключи: препод и учащийся
 <br><br>
 
 # Student_practice_relation
@@ -214,3 +203,32 @@ CREATE TABLE IF NOT EXISTS public.student_theory_relation
 ```
 ### Таблица отношений между учащимся и преподавателем через теоритическое занятие
 #### Поля - id-шники учащегося препода и занятия соответственно
+
+
+# Exam_results
+
+```sql
+CREATE TABLE IF NOT EXISTS public.exam_results
+(
+    student_id bigint NOT NULL,
+    teacher_id bigint NOT NULL,
+    exam_id bigint NOT NULL,
+    CONSTRAINT pk_exam_results PRIMARY KEY (student_id, teacher_id, exam_id),
+    CONSTRAINT fk_exam FOREIGN KEY (exam_id)
+        REFERENCES public.exam (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT fk_student FOREIGN KEY (student_id)
+        REFERENCES public.student (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT fk_teacher FOREIGN KEY (teacher_id)
+        REFERENCES public.employee (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+```
+
+### Таблица отношения межжду экзаменами, студентами и преподавателями
+#### Поля - внешние ключи (id студента, экзамена и препода) 
