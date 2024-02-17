@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bb48f91-61b1-4bc8-a949-85f1015e3d9a" name="Changes" comment="norm yml">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_30.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/CarDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/EmployeeDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/ExamDTO.java" afterDir="false" />
@@ -14,30 +12,6 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/PracticeDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/StudentDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/TheoryDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Car.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Employee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Exam.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/ExamResults.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Post.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Practice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Student.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/StudentPracticeRelation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/StudentTheoryRelation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Theory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/id/ExamResultId.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/id/StudentPracticeRelationId.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/id/StudentTheoryRelationId.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/BaseRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/CarDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/EmployeeDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/ExamDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/PostDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/PracticeDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/StudentDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/TheoryDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1707872553915</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="norm yml">
+      <created>1708044524671</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1708044524671</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
