@@ -55,5 +55,11 @@ public class Student {
     )
     private List<Employee> teachers;
 
-
+    public Student(Long id, String name, String surname, String phone, String category) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.phone = phone;
+        this.category = category;
+    }
 }

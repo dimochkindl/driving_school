@@ -135,7 +135,7 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
         }
     }
 
-    private List<Exam> getExams(Long id) {
+    public List<Exam> getExams(Long id) {
         Connection connection = getConnection();
         PreparedStatement statement = null;
         List<Exam> exams = new ArrayList<>();
@@ -166,7 +166,7 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
 
     }
 
-    private List<Practice> getPractices(Long id) {
+    public List<Practice> getPractices(Long id) {
         Connection connection = getConnection();
         PreparedStatement statement = null;
         List<Practice> practices = new ArrayList<>();
@@ -185,7 +185,7 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
                 String place = rs.getString("place");
                 Long car_id = rs.getLong("car_id");
 
-                Car car = getCar(car_id);
+                Car car = getCarForPractice(car_id);
                 Practice practice = new Practice(practiceId, date, place, price, car);
                 practices.add(practice);
             }
@@ -195,9 +195,8 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
         return practices;
     }
 
-    private Car getCar(Long id) {
+    public Car getCarForPractice(Long id) {
         Connection connection = getConnection();
-        List<Practice> practices = new ArrayList<>();
         String query = "select * from car where id = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -240,7 +239,7 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
         return null;
     }
 
-    private List<Employee> getEmployees(Long id) {
+    public List<Employee> getStudentsTeachers(Long id) {
         Connection connection = getConnection();
         List<Employee> employees = new ArrayList<>();
 
@@ -282,39 +281,8 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
         String phoneNumber = resultSet.getString("phone_number");
         String category = resultSet.getString("category");
 
-        return new Student(id, name, surname, phoneNumber, category, getExams(id), getPractices(id), getEmployees(id));
+        return new Student(id, name, surname, phoneNumber, category);
     }
-
-    // That's can do admin
-    /*private void insertStudentExams(Student student) {
-        Connection connection = getConnection();
-        String query = "insert into exam_results (student_id, teacher_id, exam_id) values (?, ?, ?)";
-
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
-            long studentId = student.getId();
-            statement.setLong(1, studentId);
-
-            List<Employee> teachers = student.getTeachers();
-            Optional<Employee> seniorTeacher = teachers.stream()
-                    .filter(teacher -> teacher.getPost().getPostAsString().toLowerCase().contains("senior"))
-                    .findFirst();
-
-            if (seniorTeacher.isPresent()) {
-                statement.setLong(2, seniorTeacher.get().getId());
-
-                List<Long> examIds = student.getExams().stream()
-                        .map(Exam::getId)
-                        .collect(Collectors.toList());
-
-                for (Long examId : examIds) {
-                    statement.setLong(3, examId);
-                    statement.executeUpdate();
-                }
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }*/
 
     public Long getLastId() {
         Connection connection = getConnection();

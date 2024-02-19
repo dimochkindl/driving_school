@@ -27,4 +27,10 @@ public class Car {
     private Long year;
 
 
+    public Car(Long id, String number, String model, Long year) {
+        this.id = id;
+        this.number = number;
+        this.model = model;
+        this.year = year;
+    }
 }

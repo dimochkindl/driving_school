@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bb48f91-61b1-4bc8-a949-85f1015e3d9a" name="Changes" comment="added dao's">
+    <list default="true" id="6bb48f91-61b1-4bc8-a949-85f1015e3d9a" name="Changes" comment="connector">
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/CarDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/EmployeeDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/ExamDTO.java" afterDir="false" />
@@ -12,19 +12,16 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/PracticeDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/StudentDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/TheoryDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/DbConnector.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/StudentDAOIml.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/app/v1/repositories/impl/StudentDAOImlTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/CarDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/EmployeeDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Car.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Exam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Exam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Practice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Practice.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/BaseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/BaseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/CarDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/CarDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/EmployeeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/EmployeeDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/StudentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/StudentDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/StudentDAOIml.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/StudentDAOIml.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +35,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -258,12 +255,28 @@
       <option name="project" value="LOCAL" />
       <updated>1708270525427</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="student crud complete">
+      <created>1708305036532</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1708305036532</updated>
+    </task>
+    <task id="LOCAL-00015" summary="connector">
+      <created>1708305071178</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1708305071178</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="norm yml" />
     <MESSAGE value="added dao's" />
-    <option name="LAST_COMMIT_MESSAGE" value="added dao's" />
+    <MESSAGE value="student crud complete" />
+    <MESSAGE value="connector" />
+    <option name="LAST_COMMIT_MESSAGE" value="connector" />
   </component>
 </project>

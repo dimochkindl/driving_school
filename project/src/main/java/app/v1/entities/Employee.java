@@ -61,4 +61,12 @@ public class Employee {
         this.experience = experience;
         this.post = post;
     }
+
+    public Employee(Long id, String name, String surname, String phone, float experience) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.phone = phone;
+        this.experience = experience;
+    }
 }
