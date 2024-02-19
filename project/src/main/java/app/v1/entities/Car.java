@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.util.List;
-
 @Entity
 @Table(name = "car")
 @Data
@@ -26,11 +24,4 @@ public class Car {
     @Column(name = "year", nullable = false)
     private Long year;
 
-
-    public Car(Long id, String number, String model, Long year) {
-        this.id = id;
-        this.number = number;
-        this.model = model;
-        this.year = year;
-    }
 }
