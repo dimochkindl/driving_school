@@ -1,6 +1,7 @@
 package app.v1.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "car")
 @Data
+@AllArgsConstructor
 public class Car {
 
     @Id
@@ -16,12 +18,13 @@ public class Car {
     private Long id;
 
     @Column(name = "car_number", length = 10)
-    private Long number;
+    private String number;
 
     @Column(name = "model", length = 40)
     private String model;
 
     @Column(name = "year", nullable = false)
     private Long year;
+
 
 }

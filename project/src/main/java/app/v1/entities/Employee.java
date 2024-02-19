@@ -1,6 +1,7 @@
 package app.v1.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "employee")
 @Data
+@AllArgsConstructor
 public class Employee {
     @Id
     @Column(name = "id")
@@ -47,4 +49,16 @@ public class Employee {
     @JoinColumn(name = "post_id")
     private Post post;
 
+    @ManyToMany(mappedBy = "teachers")
+    private List<Student> students;
+
+
+    public Employee(Long id, String name, String surname, String phone, float experience, Post post) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.phone = phone;
+        this.experience = experience;
+        this.post = post;
+    }
 }

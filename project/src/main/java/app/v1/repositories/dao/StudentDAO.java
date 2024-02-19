@@ -6,7 +6,7 @@ import app.v1.repositories.BaseRepository;
 import java.util.List;
 
 public interface StudentDAO extends BaseRepository<Student> {
-    Student getBySurname(String surname);
+    List<Student> getBySurname(String surname);
 
     List<Integer> getTheoryGrades(Long id);
 

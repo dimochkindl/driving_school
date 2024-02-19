@@ -1,6 +1,7 @@
 package app.v1.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "post")
 @Data
+@AllArgsConstructor
 public class Post {
 
     @Id
@@ -19,5 +21,9 @@ public class Post {
 
     @Column(name = "name")
     private String name;
+
+    public String getPostAsString(){
+        return name;
+    }
 
 }

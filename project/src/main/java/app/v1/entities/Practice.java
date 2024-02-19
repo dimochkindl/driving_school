@@ -1,6 +1,7 @@
 package app.v1.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.Date;
@@ -8,6 +9,7 @@ import java.util.Date;
 @Entity
 @Table(name = "practice")
 @Data
+@AllArgsConstructor
 public class Practice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,4 +29,5 @@ public class Practice {
     @ManyToOne
     @JoinColumn(name = "car_id")
     private Car car;
+
 }

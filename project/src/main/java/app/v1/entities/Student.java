@@ -1,7 +1,9 @@
 package app.v1.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +11,8 @@ import java.util.List;
 @Entity
 @Table(name = "student")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Student {
     @Id
     @Column(name = "id")
@@ -41,5 +45,15 @@ public class Student {
             joinColumns = @JoinColumn(name = "practice_id"),
             inverseJoinColumns = @JoinColumn(name = "student_id")
     )
-    private List<Exam> practices;
+    private List<Practice> practices;
+
+    @ManyToMany
+    @JoinTable(
+            name = "exam_results",
+            joinColumns = @JoinColumn(name = "teacher_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id")
+    )
+    private List<Employee> teachers;
+
+
 }

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bb48f91-61b1-4bc8-a949-85f1015e3d9a" name="Changes" comment="norm yml">
+    <list default="true" id="6bb48f91-61b1-4bc8-a949-85f1015e3d9a" name="Changes" comment="added dao's">
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/CarDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/EmployeeDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/ExamDTO.java" afterDir="false" />
@@ -12,7 +12,19 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/PracticeDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/StudentDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/TheoryDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/TheoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/TheoryDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/DbConnector.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/StudentDAOIml.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/app/v1/repositories/impl/StudentDAOImlTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Car.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Exam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Exam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Practice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Practice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/BaseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/BaseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/StudentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/StudentDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,9 +37,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit5 Test Class" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -68,8 +80,83 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="app.v1.repositories.impl" />
       <recent name="app.v1" />
     </key>
+  </component>
+  <component name="RunManager" selected="JUnit.StudentDAOImlTest.delete">
+    <configuration name="StudentDAOImlTest.delete" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.v1.repositories.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="app.v1.repositories.impl" />
+      <option name="MAIN_CLASS_NAME" value="app.v1.repositories.impl.StudentDAOImlTest" />
+      <option name="METHOD_NAME" value="delete" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StudentDAOImlTest.getAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.v1.repositories.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="app.v1.repositories.impl" />
+      <option name="MAIN_CLASS_NAME" value="app.v1.repositories.impl.StudentDAOImlTest" />
+      <option name="METHOD_NAME" value="getAll" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StudentDAOImlTest.getBySurname" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.v1.repositories.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="app.v1.repositories.impl" />
+      <option name="MAIN_CLASS_NAME" value="app.v1.repositories.impl.StudentDAOImlTest" />
+      <option name="METHOD_NAME" value="getBySurname" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StudentDAOImlTest.save" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.v1.repositories.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="app.v1.repositories.impl" />
+      <option name="MAIN_CLASS_NAME" value="app.v1.repositories.impl.StudentDAOImlTest" />
+      <option name="METHOD_NAME" value="save" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.StudentDAOImlTest.delete" />
+        <item itemvalue="JUnit.StudentDAOImlTest.getBySurname" />
+        <item itemvalue="JUnit.StudentDAOImlTest.save" />
+        <item itemvalue="JUnit.StudentDAOImlTest.getAll" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -164,11 +251,19 @@
       <option name="project" value="LOCAL" />
       <updated>1708184932688</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="added dao's">
+      <created>1708270525427</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1708270525427</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="norm yml" />
-    <option name="LAST_COMMIT_MESSAGE" value="norm yml" />
+    <MESSAGE value="added dao's" />
+    <option name="LAST_COMMIT_MESSAGE" value="added dao's" />
   </component>
 </project>
