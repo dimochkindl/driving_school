@@ -1,13 +1,13 @@
 package app.v1.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.util.Date;
 
 @Entity
 @Table(name = "theory")
 @Data
+@AllArgsConstructor
 public class Theory {
 
     @Id

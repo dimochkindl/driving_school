@@ -1,5 +1,7 @@
 package app.v1.repositories;
 
+import app.v1.entities.Car;
+
 import java.sql.SQLException;
 import java.util.List;
 

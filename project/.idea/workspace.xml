@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bb48f91-61b1-4bc8-a949-85f1015e3d9a" name="Changes" comment="connector">
+    <list default="true" id="6bb48f91-61b1-4bc8-a949-85f1015e3d9a" name="Changes" comment="changed car bag">
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/CarDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/EmployeeDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/ExamDTO.java" afterDir="false" />
@@ -12,15 +12,21 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/PracticeDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/StudentDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/TheoryDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/CarDAOImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/EmployeeDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/ExamDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/PostDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/PracticeDAoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/TheoryDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Car.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/CarDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/CarDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/EmployeeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/EmployeeDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/StudentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/StudentDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Exam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Exam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Practice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Practice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Theory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Theory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/BaseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/BaseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/ExamDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/ExamDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/PostDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/PostDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/PracticeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/PracticeDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/TheoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/TheoryDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/CarDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/CarDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/EmployeeDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/EmployeeDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/StudentDAOIml.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/StudentDAOIml.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -269,7 +275,21 @@
       <option name="project" value="LOCAL" />
       <updated>1708305071178</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="realised car and employee crud">
+      <created>1708310264765</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1708310264765</updated>
+    </task>
+    <task id="LOCAL-00017" summary="changed car bag">
+      <created>1708310436070</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1708310436070</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -277,6 +297,8 @@
     <MESSAGE value="added dao's" />
     <MESSAGE value="student crud complete" />
     <MESSAGE value="connector" />
-    <option name="LAST_COMMIT_MESSAGE" value="connector" />
+    <MESSAGE value="realised car and employee crud" />
+    <MESSAGE value="changed car bag" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed car bag" />
   </component>
 </project>

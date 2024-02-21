@@ -66,14 +66,15 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public void update(Employee employee) {
         Connection connection = getConnection();
-        String query = "update employee set id = ?, name = ? , surname = ?, phone_number = ?, experience = ?";
+        String query = "update employee set name = ? , surname = ?, phone_number = ?, experience = ? where id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
 
-            statement.setLong(1, employee.getId());
-            statement.setString(2, employee.getName());
-            statement.setString(3, employee.getSurname());
-            statement.setString(4, employee.getPhone());
-            statement.setFloat(5, employee.getExperience());
+            statement.setString(1, employee.getName());
+            statement.setString(2, employee.getSurname());
+            statement.setString(3, employee.getPhone());
+            statement.setFloat(4, employee.getExperience());
+            statement.setLong(5, employee.getId());
+
 
             statement.executeUpdate();
         } catch (SQLException ex) {

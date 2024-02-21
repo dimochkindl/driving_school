@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 public class StudentDAOIml extends DbConnector implements StudentDAO {
@@ -78,14 +78,14 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
     @Override
     public void update(Student student) {
         Connection connection = getConnection();
-        String query = "update student set id = ?, name = ? , surname = ?, phone_number = ?, category = ?";
+        String query = "update student set name = ? , surname = ?, phone_number = ?, category = ? where id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
 
-            statement.setLong(1, student.getId());
-            statement.setString(2, student.getName());
-            statement.setString(3, student.getSurname());
-            statement.setString(4, student.getPhone());
-            statement.setString(5, student.getCategory());
+            statement.setString(1, student.getName());
+            statement.setString(2, student.getSurname());
+            statement.setString(3, student.getPhone());
+            statement.setString(4, student.getCategory());
+            statement.setLong(5, student.getId());
 
             statement.executeUpdate();
         } catch (SQLException ex) {
@@ -150,7 +150,7 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
             while (resultSet.next()) {
                 Long examId = resultSet.getLong("id");
                 String examName = resultSet.getString("exam");
-                Date examDate = resultSet.getTimestamp("date");
+                Date examDate = resultSet.getDate("date");
                 Long examGrade = resultSet.getLong("grade");
 
                 Exam exam = new Exam(examId, examName, examDate, examGrade);

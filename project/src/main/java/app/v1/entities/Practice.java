@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name = "practice")
@@ -30,4 +30,10 @@ public class Practice {
     @JoinColumn(name = "car_id")
     private Car car;
 
+    public Practice(Long id, Date date, String place, float price) {
+        this.id = id;
+        this.date = date;
+        this.place = place;
+        this.price = price;
+    }
 }
