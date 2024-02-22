@@ -34,7 +34,7 @@ public class PracticeDAoImpl implements PracticeDAO {
                 String model = rs.getString("model");
                 Long year = rs.getLong("year");
 
-                practices.add(new Practice(id, date, place, price, new Car(carId, number, model, year)));
+                practices.add(new Practice(id, date.toLocalDate(), place, price, new Car(carId, number, model, year)));
             }
 
             return practices;
@@ -58,7 +58,7 @@ public class PracticeDAoImpl implements PracticeDAO {
                 Date date = rs.getDate("date");
                 String place = rs.getString("place");
                 float price = rs.getFloat("price");
-                return new Practice(id, date, place, price);
+                return new Practice(id, date.toLocalDate(), place, price);
             }
         }catch(SQLException ex){
             ex.printStackTrace();
@@ -73,7 +73,7 @@ public class PracticeDAoImpl implements PracticeDAO {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setLong(5, practice.getId());
-            statement.setDate(1, practice.getDate());
+            statement.setDate(1, Date.valueOf(practice.getDate()));
             statement.setFloat(2, practice.getPrice());
             statement.setString(3, practice.getPlace());
             statement.setLong(4, practice.getCar().getId());
@@ -108,7 +108,7 @@ public class PracticeDAoImpl implements PracticeDAO {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setLong(1, practice.getId());
-            statement.setDate(2, practice.getDate());
+            statement.setDate(2, Date.valueOf(practice.getDate()));
             statement.setFloat(3, practice.getPrice());
             statement.setString(4, practice.getPlace());
             statement.setLong(5, practice.getCar().getId());

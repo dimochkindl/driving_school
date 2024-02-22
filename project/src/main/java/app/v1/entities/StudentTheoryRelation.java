@@ -4,7 +4,7 @@ import app.v1.entities.id.StudentTheoryRelationId;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "student_theory_relation")
@@ -14,8 +14,7 @@ public class StudentTheoryRelation {
     private StudentTheoryRelationId id;
 
     @Column(name = "date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    private LocalDate date;
 
     @Column(name = "grade")
     private short grade;
@@ -23,16 +22,16 @@ public class StudentTheoryRelation {
     @MapsId("studentId")
     @ManyToOne
     @JoinColumn(name = "student_id")
-    private Long studentId;
+    private Student student;
 
     @MapsId("teacherId")
     @ManyToOne
     @JoinColumn(name = "teacher_id")
-    private Long teacherId;
+    private Employee teacher;
 
     @MapsId("theoryId")
     @ManyToOne
     @JoinColumn(name = "theory_id")
-    private Long theoryId;
+    private Theory theory;
 
 }

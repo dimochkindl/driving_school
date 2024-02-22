@@ -153,7 +153,7 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
                 Date examDate = resultSet.getDate("date");
                 Long examGrade = resultSet.getLong("grade");
 
-                Exam exam = new Exam(examId, examName, examDate, examGrade);
+                Exam exam = new Exam(examId, examName, examDate.toLocalDate(), examGrade);
                 exams.add(exam);
             }
 
@@ -186,7 +186,7 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
                 Long car_id = rs.getLong("car_id");
 
                 Car car = getCarForPractice(car_id);
-                Practice practice = new Practice(practiceId, date, place, price, car);
+                Practice practice = new Practice(practiceId, date.toLocalDate(), place, price, car);
                 practices.add(practice);
             }
         } catch (SQLException ex) {

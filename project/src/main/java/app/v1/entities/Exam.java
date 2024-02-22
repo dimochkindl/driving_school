@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "exam")
@@ -21,11 +21,8 @@ public class Exam {
     private String exam;
 
     @Column(name = "date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    private LocalDate date;
 
     @Column(name = "grade")
     private Long grade;
-
-
 }

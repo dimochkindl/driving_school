@@ -2,7 +2,10 @@ package app.v1.entities;
 
 import app.v1.entities.id.ExamResultId;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "exam_results")
@@ -18,16 +21,16 @@ public class ExamResults {
     @ManyToOne
     @MapsId("studentId")
     @JoinColumn(name = "student_id")
-    private Long student;
+    private Student student;
 
     @ManyToOne
     @MapsId("teacherId")
     @JoinColumn(name = "teacher_id")
-    private Long teacher;
+    private Employee teacher;
 
     @ManyToOne
     @MapsId("examId")
     @JoinColumn(name = "exam_id")
-    private Long exam;
+    private Exam exam;
 
 }

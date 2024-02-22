@@ -14,15 +14,15 @@ public class StudentPracticeRelation {
     @MapsId("studentId")
     @ManyToOne
     @JoinColumn(name = "student_id")
-    private Long studentId;
+    private Student student;
 
     @MapsId("teacherId")
     @ManyToOne
     @JoinColumn(name = "teacher_id")
-    private Long teacherId;
+    private Employee teacher;
 
     @MapsId("practiceId")
     @ManyToOne
     @JoinColumn(name = "practice_id")
-    private Long practiceId;
+    private Practice practice;
 }

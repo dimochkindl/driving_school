@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
@@ -31,7 +32,7 @@ public class ExamDAOImpl implements ExamDAO {
                 Date date = rs.getDate("date");
                 Long grade = rs.getLong("grade");
 
-                exams.add(new Exam(id, exam, date, grade));
+                exams.add(new Exam(id, exam, date.toLocalDate(), grade));
             }
 
             return exams;
@@ -56,7 +57,7 @@ public class ExamDAOImpl implements ExamDAO {
                 Date date = rs.getDate("date");
                 Long grade = rs.getLong("grade");
 
-                return new Exam(id, exam, date, grade);
+                return new Exam(id, exam, date.toLocalDate(), grade);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -70,7 +71,7 @@ public class ExamDAOImpl implements ExamDAO {
         String query = "update exam set exam = ?, date = ?, grade = ? where id = ?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, exam.getExam());
-            statement.setDate(2, exam.getDate());
+            statement.setDate(2, Date.valueOf(exam.getDate()));
             statement.setLong(3, exam.getGrade());
             statement.setLong(4, exam.getId());
 
@@ -103,7 +104,7 @@ public class ExamDAOImpl implements ExamDAO {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(2, exam.getExam());
-            statement.setDate(3, exam.getDate());
+            statement.setDate(3, Date.valueOf(exam.getDate()));
             statement.setLong(4, exam.getGrade());
             statement.setLong(1, exam.getId());
 
@@ -133,7 +134,7 @@ public class ExamDAOImpl implements ExamDAO {
                 String exam = rs.getString("exam");
                 Long grade = rs.getLong("grade");
 
-                exams.add(new Exam(id, exam, date, grade));
+                exams.add(new Exam(id, exam, date.toLocalDate(), grade));
             }
 
             return exams;
