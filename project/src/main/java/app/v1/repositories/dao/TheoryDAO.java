@@ -1,6 +1,5 @@
 package app.v1.repositories.dao;
 
-import app.v1.entities.Practice;
 import app.v1.entities.Theory;
 import app.v1.repositories.BaseRepository;
 
@@ -11,7 +10,7 @@ public interface TheoryDAO extends BaseRepository<Theory> {
     List<Theory> getTheoryByDate(Date date);
     Theory getTheoryByTheme(String theme);
 
-    int getAVGGradeForStudent(Long id);
+    float getAVGGradeForStudent(Long id);
 
     List<Long> getAllGrades(Long id);
 }

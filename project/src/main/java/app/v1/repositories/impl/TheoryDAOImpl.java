@@ -1,6 +1,5 @@
 package app.v1.repositories.impl;
 
-import app.v1.entities.Practice;
 import app.v1.entities.Theory;
 import app.v1.repositories.DbConnector;
 import app.v1.repositories.dao.TheoryDAO;
@@ -158,12 +157,47 @@ public class TheoryDAOImpl implements TheoryDAO {
     }
 
     @Override
-    public int getAVGGradeForStudent(Long id) {
+    public float getAVGGradeForStudent(Long id) {
+        Connection connection = DbConnector.getConnection();
+        String query = "select avg(grade) from theory t " +
+                "join student_theory_relation st on st.theory_id = t.id " +
+                "where st.student_id = ?";
+
+        try(PreparedStatement statement = connection.prepareStatement(query)){
+
+            statement.setLong(1, id);
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                return rs.getFloat(1);
+            }
+
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
         return 0;
     }
 
     @Override
     public List<Long> getAllGrades(Long id) {
+        Connection connection = DbConnector.getConnection();
+        List<Long> grades = new ArrayList<>();
+        String query = "select grade from theory t " +
+                "join student_theory_relation st on st.theory_id = t.id " +
+                "where st.student_id = ?";
+
+        try(PreparedStatement statement = connection.prepareStatement(query)){
+
+            statement.setLong(1, id);
+            ResultSet rs = statement.executeQuery();
+
+            while(rs.next()){
+                grades.add(rs.getLong(1));
+            }
+
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
         return null;
     }
 }

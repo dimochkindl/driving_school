@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bb48f91-61b1-4bc8-a949-85f1015e3d9a" name="Changes" comment="changed car bag">
+    <list default="true" id="6bb48f91-61b1-4bc8-a949-85f1015e3d9a" name="Changes" comment="more daos">
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/CarDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/EmployeeDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/ExamDTO.java" afterDir="false" />
@@ -12,22 +12,9 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/PracticeDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/StudentDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/TheoryDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/ExamDAOImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/PostDAOImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/PracticeDAoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/TheoryDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Exam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Exam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Practice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Practice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Theory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Theory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/BaseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/BaseRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/ExamDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/ExamDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/PostDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/PostDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/PracticeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/PracticeDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/TheoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/TheoryDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/CarDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/CarDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/EmployeeDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/EmployeeDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/StudentDAOIml.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/StudentDAOIml.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/TheoryDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/TheoryDAOImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,16 +55,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Repository github/driving_school/project&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "last_opened_file_path": "D:/Unik/6_sem/cosi/lab1"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -289,7 +276,14 @@
       <option name="project" value="LOCAL" />
       <updated>1708310436070</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="more daos">
+      <created>1708538475060</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1708538475061</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -299,6 +293,7 @@
     <MESSAGE value="connector" />
     <MESSAGE value="realised car and employee crud" />
     <MESSAGE value="changed car bag" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed car bag" />
+    <MESSAGE value="more daos" />
+    <option name="LAST_COMMIT_MESSAGE" value="more daos" />
   </component>
 </project>
