@@ -1,80 +1,110 @@
 package app.v1.repositories.impl;
 
 import app.v1.entities.Student;
-import lombok.SneakyThrows;
+import app.v1.repositories.DbConnector;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.sql.*;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class StudentDAOImlTest {
 
-    private final String password = "lilasgard228";
-    private final String username = "postgres";
+    private StudentDAOIml repo;
+    private Connection mockConnection;
+    private Statement mockStatement;
+    private PreparedStatement mockPreparedStatement;
+    private ResultSet mockResultSet;
 
-    private final String url = "jdbc:postgresql://localhost:5432/driving_school";
+    @BeforeEach
+    void setUp() throws SQLException {
+        repo = new StudentDAOIml();
 
-    private StudentDAOIml repo = new StudentDAOIml();
+        // Создаем моки
+        mockConnection = mock(Connection.class);
+        mockStatement = mock(Statement.class);
+        mockPreparedStatement = mock(PreparedStatement.class);
+        mockResultSet = mock(ResultSet.class);
 
-    @Test
-    void getAll() {
+        // Определяем поведение моков
+        when(mockConnection.createStatement()).thenReturn(mockStatement);
+        when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
 
-        try (Connection connection = DriverManager.getConnection(url, username, password);
-             Statement statement = connection.createStatement()) {
-
-            List<Student> students = repo.getAll();
-            assertEquals(1, students.size());
-            for (var student : students) {
-                System.out.println(student);
-            }
-
-        } catch (SQLException e) {
-            fail("Exception during test: " + e.getMessage());
-        }
+        // Моки для DbConnector
+        mockStatic(DbConnector.class);
+        when(DbConnector.getConnection()).thenReturn(mockConnection);
     }
 
-    @SneakyThrows
     @Test
-    void save() {
+    void getAll() throws SQLException {
+        // Определяем поведение мока ResultSet
+        when(mockStatement.executeQuery(anyString())).thenReturn(mockResultSet);
+        when(mockResultSet.next()).thenReturn(true, false);
 
-        try (Connection connection = DriverManager.getConnection(url, username, password)) {
-            Student student = new Student();
+        // Ваш тестовый код
+        List<Student> students = repo.getAll();
 
-            student.setName("Mishanya");
-            student.setSurname("Hos");
-            student.setPhone("+4354234");
-            student.setCategory("A");
-
-            Long id = repo.getLastId();
-            student.setId(++id);
-            repo.save(student);
-
-            PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) FROM student WHERE name = ?");
-            statement.setString(1, "Alena");
-            ResultSet resultSet = statement.executeQuery();
-            assertTrue(resultSet.next());
-            int count = resultSet.getInt(1);
-            assertEquals(1, count);
+        // Проверки
+        assertEquals(1, students.size());
+        for (var student : students) {
+            System.out.println(student);
         }
     }
 
     @Test
-    void getBySurname() {
+    void save() throws SQLException {
+        // Ваш тестовый код
+
+        // Определяем поведение мока PreparedStatement и ResultSet
+        when(mockConnection.prepareStatement(anyString(), anyInt())).thenReturn(mockPreparedStatement);
+        when(mockPreparedStatement.getGeneratedKeys()).thenReturn(mockResultSet);
+        when(mockResultSet.next()).thenReturn(true);
+        when(mockResultSet.getLong(1)).thenReturn(1L);
+
+        // Ваш тестовый код
+        Student student = new Student();
+        student.setName("Mishanya");
+        student.setSurname("Hos");
+        student.setPhone("+4354234");
+        student.setCategory("A");
+
+        Long id = repo.getLastId();
+        student.setId(++id);
+        repo.save(student);
+
+        // Проверки
+        verify(mockPreparedStatement, times(1)).executeUpdate();
+    }
+
+    @Test
+    void getBySurname() throws SQLException {
+        // Определяем поведение мока ResultSet
+        when(mockPreparedStatement.executeQuery()).thenReturn(mockResultSet);
+        when(mockResultSet.next()).thenReturn(true, false);
+
+        // Ваш тестовый код
         String surnameToFind = "Hos";
-
         List<Student> foundStudent = repo.getBySurname(surnameToFind);
-        assertNotNull(foundStudent);
 
+        // Проверки
+        assertNotNull(foundStudent);
         for (var student : foundStudent) {
             assertEquals(surnameToFind, student.getSurname());
         }
-
     }
 
     @Test
-    void delete() {
+    void delete() throws SQLException {
+        // Ваш тестовый код
+
+        // Определяем поведение мока ResultSet
+        when(mockPreparedStatement.executeQuery()).thenReturn(mockResultSet);
+        when(mockResultSet.next()).thenReturn(true, false);
+
+        // Ваш тестовый код
         Long id = repo.getLastId();
         Student studentBeforeDeletion = repo.getById(id);
         assertNotNull(studentBeforeDeletion);
@@ -82,9 +112,11 @@ class StudentDAOImlTest {
 
         repo.delete(id);
 
+        // Проверки
+        verify(mockPreparedStatement, times(1)).executeUpdate();
+
         Student studentAfterDeletion = repo.getById(id);
         assertNull(studentAfterDeletion);
         System.out.println("After deletion: " + studentAfterDeletion);
     }
-
 }
