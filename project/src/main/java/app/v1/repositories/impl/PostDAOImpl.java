@@ -4,6 +4,7 @@ import app.v1.entities.Employee;
 import app.v1.entities.Post;
 import app.v1.repositories.DbConnector;
 import app.v1.repositories.dao.PostDAO;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Repository
 public class PostDAOImpl implements PostDAO {
 
     @Override

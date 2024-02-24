@@ -3,11 +3,14 @@ package app.v1.repositories.impl;
 import app.v1.entities.Theory;
 import app.v1.repositories.DbConnector;
 import app.v1.repositories.dao.TheoryDAO;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Repository
 public class TheoryDAOImpl implements TheoryDAO {
     @Override
     public List<Theory> getAll() {

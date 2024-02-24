@@ -2,6 +2,7 @@ package app.v1.repositories.impl;
 
 import app.v1.entities.*;
 import app.v1.repositories.dao.EmployeeDAO;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +13,7 @@ import java.util.List;
 
 import static app.v1.repositories.DbConnector.getConnection;
 
+@Repository
 public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public List<Employee> getAll() {

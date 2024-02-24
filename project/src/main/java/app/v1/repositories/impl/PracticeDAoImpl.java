@@ -1,15 +1,17 @@
 package app.v1.repositories.impl;
 
 import app.v1.entities.Car;
-import app.v1.entities.Post;
 import app.v1.entities.Practice;
 import app.v1.repositories.DbConnector;
 import app.v1.repositories.dao.PracticeDAO;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Repository
 public class PracticeDAoImpl implements PracticeDAO {
     @Override
     public List<Practice> getAll() {
@@ -49,18 +51,18 @@ public class PracticeDAoImpl implements PracticeDAO {
         Connection connection = DbConnector.getConnection();
         String query = "select * from practice where id = ?";
 
-        try(PreparedStatement statement = connection.prepareStatement(query)){
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setLong(1, id);
             ResultSet rs = statement.executeQuery();
 
-            if(rs.next()){
+            if (rs.next()) {
                 Date date = rs.getDate("date");
                 String place = rs.getString("place");
                 float price = rs.getFloat("price");
                 return new Practice(id, date.toLocalDate(), place, price);
             }
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return null;
@@ -90,13 +92,13 @@ public class PracticeDAoImpl implements PracticeDAO {
         Connection connection = DbConnector.getConnection();
         String query = "delete from practice where id = ?";
 
-        try(PreparedStatement statement = connection.prepareStatement(query)){
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setLong(1, id);
             int rowsChanged = statement.executeUpdate();
 
-            System.out.println("Rows affected after deleting practice by id: "+rowsChanged);
-        }catch(SQLException ex){
+            System.out.println("Rows affected after deleting practice by id: " + rowsChanged);
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }

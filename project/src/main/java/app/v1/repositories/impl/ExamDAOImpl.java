@@ -4,16 +4,13 @@ import app.v1.entities.Employee;
 import app.v1.entities.Exam;
 import app.v1.repositories.DbConnector;
 import app.v1.repositories.dao.ExamDAO;
+import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDate;
+import java.sql.*;
 import java.util.ArrayList;
-import java.sql.Date;
 import java.util.List;
 
+@Repository
 public class ExamDAOImpl implements ExamDAO {
     @Override
     public List<Exam> getAll() {
@@ -86,13 +83,13 @@ public class ExamDAOImpl implements ExamDAO {
         Connection connection = DbConnector.getConnection();
         String query = "delete from exam where id = ?";
 
-        try(PreparedStatement statement = connection.prepareStatement(query)){
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setLong(1, id);
             int rowsChanged = statement.executeUpdate();
 
-            System.out.println("Rows affected after deleting exam by id: "+rowsChanged);
-        }catch(SQLException ex){
+            System.out.println("Rows affected after deleting exam by id: " + rowsChanged);
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
@@ -109,12 +106,11 @@ public class ExamDAOImpl implements ExamDAO {
             statement.setLong(1, exam.getId());
 
             int saved = statement.executeUpdate();
-            System.out.println("rows affected after saving the new exam: " + saved + " exam: "+ exam.getExam());
+            System.out.println("rows affected after saving the new exam: " + saved + " exam: " + exam.getExam());
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
-
 
 
     @Override

@@ -3,6 +3,7 @@ package app.v1.repositories.impl;
 import app.v1.entities.*;
 import app.v1.repositories.DbConnector;
 import app.v1.repositories.dao.StudentDAO;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +13,8 @@ import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
 
+
+@Repository
 public class StudentDAOIml extends DbConnector implements StudentDAO {
     @Override
     public List<Student> getAll() {

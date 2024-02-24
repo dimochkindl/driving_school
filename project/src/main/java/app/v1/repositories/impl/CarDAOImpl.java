@@ -4,6 +4,7 @@ import app.v1.entities.Car;
 import app.v1.entities.Practice;
 import app.v1.repositories.DbConnector;
 import app.v1.repositories.dao.CarDAO;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+@Repository
 public class CarDAOImpl implements CarDAO {
     @Override
     public List<Car> getAll() {
