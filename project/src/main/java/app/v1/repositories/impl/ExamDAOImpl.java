@@ -97,13 +97,12 @@ public class ExamDAOImpl implements ExamDAO {
     @Override
     public void save(Exam exam) {
         Connection connection = DbConnector.getConnection();
-        String query = "insert into exam  (id, exam, date, grade) values(?, ?, ?, ?)";
+        String query = "insert into exam  (exam, date, grade) values(?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
 
-            statement.setString(2, exam.getExam());
-            statement.setDate(3, Date.valueOf(exam.getDate()));
-            statement.setLong(4, exam.getGrade());
-            statement.setLong(1, exam.getId());
+            statement.setString(1, exam.getExam());
+            statement.setDate(2, Date.valueOf(exam.getDate()));
+            statement.setLong(3, exam.getGrade());
 
             int saved = statement.executeUpdate();
             System.out.println("rows affected after saving the new exam: " + saved + " exam: " + exam.getExam());

@@ -97,12 +97,11 @@ public class TheoryDAOImpl implements TheoryDAO {
     @Override
     public void save(Theory theory) {
         Connection connection = DbConnector.getConnection();
-        String query = "insert into theory  (id, theme, price) values(?, ?, ?)";
+        String query = "insert into theory  (theme, price) values( ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
 
-            statement.setLong(1, theory.getId());
-            statement.setString(2, theory.getTheme());
-            statement.setFloat(3, theory.getPrice());
+            statement.setString(1, theory.getTheme());
+            statement.setFloat(2, theory.getPrice());
 
             int saved = statement.executeUpdate();
             System.out.println("rows affected after saving the theory: " + saved);

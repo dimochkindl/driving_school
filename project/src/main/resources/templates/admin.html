@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 30px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            width: 200px;
+        }
+
+        button[type="submit"] {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>Admin panel</h1>
+
+<h2>Сотрудники</h2>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Phone</th>
+        <th>Experience</th>
+        <th>Post</th>
+        <th>Manipulate</th>
+    </tr>
+    <tr th:each="employee : ${employees}">
+        <td th:text="${employee.getName}"></td>
+        <td th:text="${employee.getSurname}"></td>
+        <td th:text="${employee.getPhone}"></td>
+        <td th:text="${employee.getExperience}"></td>
+        <td th:text="${service.getPost(employee.getId()).getName}"></td>
+        <td>
+            <button>Edit</button>
+            <form th:action="@{/admin/employee/deleteEmployee}" method="post">
+                <input type="hidden" name="id" th:value="${employee.getId()}"/>
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<h2>Students</h2>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Manipulate</th>
+    </tr>
+</table>
+
+<h2>Posts</h2>
+<table>
+    <tr>
+        <th>Post</th>
+        <th>Specialization</th>
+        <th>Manipulate</th>
+    </tr>
+    <tr th:each="post : ${posts}">
+        <td th:text="${post.getName}"></td>
+        <td th:text="${post.getSpecialization}"></td>
+        <td>
+            <button>Edit</button>
+            <form th:action="@{/admin/post/deletePost}" method="post">
+                <input type="hidden" name="id" th:value="${post.getId()}"/>
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<h2>Add employee</h2>
+<form th:object="${newEmployee}" th:action="@{/admin/employee/addEmployee}" method="post">
+    <label for="employeeName">Name:</label>
+    <input type="text" id="employeeName" name="name" th:field="*{name}" required><br>
+
+    <label for="employeeSurname">Surname:</label>
+    <input type="text" id="employeeSurname" name="surname" th:field="*{surname}" required><br>
+
+    <label for="employeePhone">Phone:</label>
+    <input type="text" id="employeePhone" name="phone" th:field="*{phone}" required><br>
+
+    <label for="employeeExperience">Experience:</label>
+    <input type="text" id="employeeExperience" name="experience" th:field="*{experience}" required><br>
+
+    <label for="employeePosts">Position:</label>
+    <select id="employeePosts" name="post.id" th:field="*{post.id}" required>
+        <option th:each="post : ${posts}" th:value="${post.id}" th:text="${post.name}"></option>
+    </select><br>
+
+    <button type="submit">Add</button>
+</form>
+
+
+<h2>Добавить обучающегося</h2>
+<form>
+    <label for="studentName">Имя:</label>
+    <input type="text" id="studentName" name="studentName" required><br>
+
+    <label for="studentCourse">Курс:</label>
+    <input type="text" id="studentCourse" name="studentCourse" required><br>
+
+    <button type="submit">Добавить</button>
+</form>
+</body>
+</html>

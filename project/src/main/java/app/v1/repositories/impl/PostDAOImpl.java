@@ -83,12 +83,11 @@ public class PostDAOImpl implements PostDAO {
     @Override
     public void save(Post post) {
         Connection connection = DbConnector.getConnection();
-        String query = "insert into post  (id, specialization, name) values(?, ?, ?)";
+        String query = "insert into post  (specialization, name) values(?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
 
-            statement.setLong(1, post.getId());
+            statement.setString(1, post.getSpecialization());
             statement.setString(2, post.getSpecialization());
-            statement.setString(3, post.getSpecialization());
 
             int saved = statement.executeUpdate();
             System.out.println("rows affected after saving the post: " + saved + " post: "+ post.getPostAsString());

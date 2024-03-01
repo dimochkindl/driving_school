@@ -100,13 +100,12 @@ public class CarDAOImpl implements CarDAO {
     @Override
     public void save(Car car) {
         Connection connection = DbConnector.getConnection();
-        String query = "insert into car  (id, car_number, model, year) values(?, ?, ?, ?)";
+        String query = "insert into car  (car_number, model, year) values(?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
 
-            statement.setLong(1, car.getId());
-            statement.setString(2, car.getNumber());
-            statement.setString(3, car.getModel());
-            statement.setLong(4, car.getYear());
+            statement.setString(1, car.getNumber());
+            statement.setString(2, car.getModel());
+            statement.setLong(3, car.getYear());
 
             statement.executeUpdate();
         } catch (SQLException ex) {

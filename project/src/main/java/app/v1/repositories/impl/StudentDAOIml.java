@@ -123,14 +123,14 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
     @Override
     public void save(Student student) {
         Connection connection = getConnection();
-        String query = "insert into student  (id, name, surname, phone_number, category) values(?, ?, ?, ?, ?)";
+        String query = "insert into student  (name, surname, phone_number, category) values(?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
 
-            statement.setLong(1, student.getId());
-            statement.setString(2, student.getName());
-            statement.setString(3, student.getSurname());
-            statement.setString(4, student.getPhone());
-            statement.setString(5, student.getCategory());
+
+            statement.setString(1, student.getName());
+            statement.setString(2, student.getSurname());
+            statement.setString(3, student.getPhone());
+            statement.setString(4, student.getCategory());
 
             statement.executeUpdate();
         } catch (SQLException ex) {

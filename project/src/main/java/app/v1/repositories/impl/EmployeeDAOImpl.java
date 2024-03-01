@@ -90,9 +90,9 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             connection.setAutoCommit(false);
 
             executeUpdate(connection, "delete from employee where id = ?", id);
-            executeUpdate(connection, "delete from exam_results where employee_id = ?", id);
-            executeUpdate(connection, "delete from student_practice_relation where employee_id = ?", id);
-            executeUpdate(connection, "delete from student_theory_relation where employee_id = ?", id);
+            executeUpdate(connection, "delete from exam_results where teacher_id = ?", id);
+            executeUpdate(connection, "delete from student_practice_relation where teacher_id = ?", id);
+            executeUpdate(connection, "delete from student_theory_relation where teacher_id = ?", id);
 
             connection.commit();
         } catch (SQLException e) {
@@ -110,14 +110,14 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public void save(Employee employee) {
         Connection connection = getConnection();
-        String query = "insert into employee  (id, name, surname, phone_number, experience) values(?, ?, ?, ?, ?)";
+        String query = "insert into employee  (name, surname, phone_number, experience, post_id) values(?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
 
-            statement.setLong(1, employee.getId());
-            statement.setString(2, employee.getName());
-            statement.setString(3, employee.getSurname());
-            statement.setString(4, employee.getPhone());
-            statement.setFloat(5, employee.getExperience());
+            statement.setString(1, employee.getName());
+            statement.setString(2, employee.getSurname());
+            statement.setString(3, employee.getPhone());
+            statement.setFloat(4, employee.getExperience());
+            statement.setLong(5, employee.getPost().getId());
 
             statement.executeUpdate();
         } catch (SQLException ex) {
@@ -155,15 +155,29 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
             ResultSet rs = statement.executeQuery();
 
-            Long post_id = rs.getLong("id");
-            String specialization = rs.getString("specialization");
-            String name = rs.getString("name");
-            return new Post(post_id, specialization, name);
+            if (rs.next()) { // Проверяем, есть ли следующая запись
+                Long post_id = rs.getLong("id");
+                String specialization = rs.getString("specialization");
+                String name = rs.getString("name");
+                return new Post(post_id, specialization, name);
+            } else {
+                // Можно выбрать другое действие, например, бросить исключение или вернуть null, в зависимости от вашего случая использования.
+                System.out.println("Запись с id=" + id + " не найдена.");
+                return null;
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
+        } finally {
+            // Не забывайте закрывать ресурсы, например, Connection, после использования
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }
+
 
     @Override
     public void retireFromTheory(Long id) {

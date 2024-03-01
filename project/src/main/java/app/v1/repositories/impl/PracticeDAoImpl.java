@@ -106,14 +106,13 @@ public class PracticeDAoImpl implements PracticeDAO {
     @Override
     public void save(Practice practice) {
         Connection connection = DbConnector.getConnection();
-        String query = "insert into practice  (id, date, price, place, car_id) values(?, ?, ?, ?)";
+        String query = "insert into practice  (date, price, place, car_id) values(?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
 
-            statement.setLong(1, practice.getId());
-            statement.setDate(2, Date.valueOf(practice.getDate()));
-            statement.setFloat(3, practice.getPrice());
-            statement.setString(4, practice.getPlace());
-            statement.setLong(5, practice.getCar().getId());
+            statement.setDate(1, Date.valueOf(practice.getDate()));
+            statement.setFloat(2, practice.getPrice());
+            statement.setString(3, practice.getPlace());
+            statement.setLong(4, practice.getCar().getId());
 
             int saved = statement.executeUpdate();
             System.out.println("rows affected after saving the practice: " + saved);

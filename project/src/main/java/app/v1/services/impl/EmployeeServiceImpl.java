@@ -38,7 +38,7 @@ public class EmployeeServiceImpl extends BaseServiceImpl<Employee> implements Em
 
     @Override
     public Post getPost(Long id) {
-        return null;
+        return repository.getPost(id);
     }
 
     @Override
