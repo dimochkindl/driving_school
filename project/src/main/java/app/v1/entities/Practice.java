@@ -26,7 +26,7 @@ public class Practice {
     @Column(name = "price")
     private float price;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "car_id")
     private Car car;
 

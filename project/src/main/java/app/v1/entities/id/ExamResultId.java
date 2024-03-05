@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 @Embeddable
@@ -14,6 +15,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ExamResultId implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 7980064578169571586L;
     private Long studentId;
     private Long teacherId;
     private Long examId;

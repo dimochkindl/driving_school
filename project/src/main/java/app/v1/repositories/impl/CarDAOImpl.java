@@ -4,6 +4,10 @@ import app.v1.entities.Car;
 import app.v1.entities.Practice;
 import app.v1.repositories.DbConnector;
 import app.v1.repositories.dao.CarDAO;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -15,7 +19,13 @@ import java.util.List;
 
 
 @Repository
+@Slf4j
 public class CarDAOImpl implements CarDAO {
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
+
     @Override
     public List<Car> getAll() {
         Connection connection = DbConnector.getConnection();
@@ -35,6 +45,7 @@ public class CarDAOImpl implements CarDAO {
 
                 cars.add(new Car(id, number, model, year));
             }
+            log.info("Cars result set: ", cars);
             return cars;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -115,6 +126,9 @@ public class CarDAOImpl implements CarDAO {
 
     @Override
     public List<Practice> usedForPractices(Long id) {
-        return null;
+        TypedQuery<Practice> query = entityManager.createQuery("select p from practice where car_id = :car_id", Practice.class);
+        query.setParameter("car_id", id);
+        List<Practice> practices = query.getResultList();
+        return practices;
     }
 }

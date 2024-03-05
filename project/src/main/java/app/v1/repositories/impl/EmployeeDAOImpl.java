@@ -2,6 +2,7 @@ package app.v1.repositories.impl;
 
 import app.v1.entities.*;
 import app.v1.repositories.dao.EmployeeDAO;
+import lombok.Cleanup;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -101,10 +102,9 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     private void executeUpdate(Connection connection, String query, Long id) throws SQLException {
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setLong(1, id);
-            statement.executeUpdate();
-        }
+        @Cleanup PreparedStatement statement = connection.prepareStatement(query);
+        statement.setLong(1, id);
+        statement.executeUpdate();
     }
 
     @Override
