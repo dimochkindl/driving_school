@@ -1,72 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Admin panel</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
+    <link id="style-link" rel="stylesheet" type="text/css" th:href="@{/css/default_style.css}"/>
+    <script th:src="@{/js/themeToggle.js}" defer></script>
+    <script th:src="@{/js/editEmployee.js}" defer></script>
 
-        h1 {
-            text-align: center;
-        }
-
-        h2 {
-            margin-top: 30px;
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        button {
-            padding: 5px 10px;
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            cursor: pointer;
-            margin-right: 5px;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        form {
-            margin-top: 20px;
-        }
-
-        label {
-            font-weight: bold;
-        }
-
-        input[type="text"] {
-            padding: 5px;
-            width: 200px;
-        }
-
-        button[type="submit"] {
-            margin-top: 10px;
-        }
-    </style>
 </head>
+
 <body>
 <h1>Admin panel</h1>
 
-<h2>Сотрудники</h2>
+<h2>Employees</h2>
 <table>
     <tr>
         <th>Name</th>
@@ -77,13 +23,47 @@
         <th>Manipulate</th>
     </tr>
     <tr th:each="employee : ${employees}">
-        <td th:text="${employee.getName}"></td>
-        <td th:text="${employee.getSurname}"></td>
-        <td th:text="${employee.getPhone}"></td>
-        <td th:text="${employee.getExperience}"></td>
-        <td th:text="${service.getPost(employee.getId()).getName}"></td>
         <td>
-            <button>Edit</button>
+            <span id="name-${employee.getId()}" th:text="${employee.getName}"></span>
+            <input type="text" name="name" id="edit-name-${employee.getId()}" th:value="${employee.getName}"
+                   style="display: none"/>
+        </td>
+
+        <td>
+            <span id="surname-${employee.getId()}" th:text="${employee.getSurname}"></span>
+            <input type="text" name="surname" id="edit-surname-${employee.getId()}"
+                   th:value="${employee.getSurname}" style="display: none"/>
+        </td>
+
+        <td>
+            <span id="phone-${employee.getId()}" th:text="${employee.getPhone}"></span>
+            <input type="text" name="phone" id="edit-phone-${employee.getId()}" th:value="${employee.getPhone}"
+                   style="display: none"/>
+        </td>
+
+        <td>
+            <span id="experience-${employee.getId()}" th:text="${employee.getExperience}"></span>
+            <input type="text" name="experience" id="edit-experience-${employee.getId()}"
+                   th:value="${employee.getExperience}" style="display: none"/>
+        </td>
+
+        <td>
+                <span id="post-${employee.getId()}"
+                      th:text="${service.getPost(employee.getId()).getName}"></span>
+            <input type="text" name="postId" id="edit-postId-${employee.getId()}"
+                   th:value="${service.getPost(employee.getId()).getId()}" style="display: none"/>
+        </td>
+
+        <td>
+            <form th:action="@{/admin/employee/editEmployee}" method="post">
+                <input type="hidden" name="id" th:value="${employee.getId()}"/>
+                <button type="button" onclick="enableEdit(${employee.getId()})">Edit</button>
+                <button type="button" id="save-btn-${employee.getId()}" style="display: none"
+                        onclick="saveChanges(${employee.getId()})">Save Changes
+                </button>
+                <button type="submit" style="display: none">Save</button>
+            </form>
+
             <form th:action="@{/admin/employee/deleteEmployee}" method="post">
                 <input type="hidden" name="id" th:value="${employee.getId()}"/>
                 <button type="submit">Delete</button>
@@ -92,14 +72,42 @@
     </tr>
 </table>
 
+
+<h2>Add employee</h2>
+<a th:href="@{/admin/employee/addEmployee}">
+    <button>Add Employee</button>
+</a>
+
+
 <h2>Students</h2>
 <table>
     <tr>
         <th>Name</th>
         <th>Surname</th>
+        <th>Phone</th>
+        <th>Category</th>
         <th>Manipulate</th>
     </tr>
+    <tr th:each="student : ${students}">
+        <td th:text="${student.getName}"></td>
+        <td th:text="${student.getSurname}"></td>
+        <td th:text="${student.getPhone}"></td>
+        <td th:text=" ${student.getCategory}"></td>
+        <td>
+            <button>Edit</button>
+            <form th:action="@{/admin/student/delete}" method="post">
+                <input type="hidden" name="id" th:value="${student.getId()}"/>
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
 </table>
+
+<h2>Add student</h2>
+<a th:href="@{/admin/student/addStudent}">
+    <button>Add Employee</button>
+</a>
+
 
 <h2>Posts</h2>
 <table>
@@ -120,39 +128,6 @@
         </td>
     </tr>
 </table>
-
-<h2>Add employee</h2>
-<form th:object="${newEmployee}" th:action="@{/admin/employee/addEmployee}" method="post">
-    <label for="employeeName">Name:</label>
-    <input type="text" id="employeeName" name="name" th:field="*{name}" required><br>
-
-    <label for="employeeSurname">Surname:</label>
-    <input type="text" id="employeeSurname" name="surname" th:field="*{surname}" required><br>
-
-    <label for="employeePhone">Phone:</label>
-    <input type="text" id="employeePhone" name="phone" th:field="*{phone}" required><br>
-
-    <label for="employeeExperience">Experience:</label>
-    <input type="text" id="employeeExperience" name="experience" th:field="*{experience}" required><br>
-
-    <label for="employeePosts">Position:</label>
-    <select id="employeePosts" name="post.id" th:field="*{post.id}" required>
-        <option th:each="post : ${posts}" th:value="${post.id}" th:text="${post.name}"></option>
-    </select><br>
-
-    <button type="submit">Add</button>
-</form>
-
-
-<h2>Добавить обучающегося</h2>
-<form>
-    <label for="studentName">Имя:</label>
-    <input type="text" id="studentName" name="studentName" required><br>
-
-    <label for="studentCourse">Курс:</label>
-    <input type="text" id="studentCourse" name="studentCourse" required><br>
-
-    <button type="submit">Добавить</button>
-</form>
+<button id="toggle-dark-mode-btn" onclick="toggleDarkMode()">Change Mode</button>
 </body>
 </html>

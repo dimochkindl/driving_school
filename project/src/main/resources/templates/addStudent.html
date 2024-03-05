@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Employee</title>
+    <!-- Ваши стили здесь, если необходимо -->
+</head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 30px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            width: 200px;
+        }
+
+        button[type="submit"] {
+            margin-top: 10px;
+        }
+    </style>
+<body>
+<h2>Add student</h2>
+<form th:object="${newStudent}" th:action="@{/admin/student/add}" method="post">
+    <label for="studentName">Name:</label>
+    <input type="text" id="studentName" name="name" th:field="*{name}" required><br>
+
+    <label for="studentSurname">Surname:</label>
+    <input type="text" id="studentSurname" name="surname" th:field="*{surname}" required><br>
+
+    <label for="studentPhone">Phone:</label>
+    <input type="text" id="studentPhone" name="phone" th:field="*{phone}" required><br>
+
+    <label for="studentCategory">Experience:</label>
+    <input type="text" id="studentCategory" name="category" th:field="*{category}" required><br>
+
+    <button type="submit">Add</button>
+</form>
+</body>
+</html>

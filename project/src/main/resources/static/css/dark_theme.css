@@ -1,0 +1,180 @@
+:where(html) {
+  --darkmode: 0;
+  container-name: root;
+  container-type: normal;
+}
+
+body {
+  --background-color: #333;
+  --text-color: #ddd;
+  background-color: var(--darkmode);
+  color: var(--text-color);
+}
+
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+h2 {
+  margin-top: 30px;
+  color: #555;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+button {
+  padding: 8px 15px;
+  background-color: #2f4a35;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+button:hover {
+  background-color: #1c3b22;
+}
+
+form {
+  margin-top: 20px;
+}
+
+label {
+  font-weight: bold;
+  color: #333;
+}
+
+input[type="text"] {
+  padding: 8px;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button[type="submit"] {
+  margin-top: 10px;
+  background-color: #127da1;
+}
+
+button[type="submit"]:hover {
+  background-color: #164757;
+}
+
+/* DEMO */
+.toggle-group {
+  border: 2px solid #CCC;
+  border-radius: 24px;
+  inline-size: fit-content;
+  padding: 3px;
+}
+.toggle-group label {
+  border-radius: 21px;
+  cursor: pointer;
+  display: inline-flex;
+  padding: 0.5em 1em;
+  text-align: center;
+  user-select: none;
+}
+.toggle-group label:has(input:checked) {
+  background-color: #CCC;
+  color: #333;
+}
+
+[data-sr] {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/* Dark Mode Styles */
+:where(html) {
+  --darkmode: 0;
+  container-name: root;
+  container-type: normal;
+}
+
+body {
+  --background-color: #333;
+  --text-color: #ddd;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+h1, h2 {
+  color: #ddd;
+}
+
+table {
+  color: var(--text-color);
+}
+
+th, td {
+  border-bottom: 1px solid #ddd;
+  color: var(--text-color);
+}
+
+th {
+  background-color: #555;
+}
+
+button {
+  background-color: #276d8a;
+}
+
+button:hover {
+  background-color: #05384d;
+}
+
+label {
+  color: #ddd;
+}
+
+input[type="text"] {
+  border: 1px solid #555;
+  background-color: #ddd;
+  color: #333;
+}
+
+button[type="submit"] {
+  background-color: #327335;
+}
+
+button[type="submit"]:hover {
+  background-color: #1a421c;
+}
+
+#toggle-dark-mode-btn {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#toggle-dark-mode-btn:hover {
+    background-color: #555;
+}

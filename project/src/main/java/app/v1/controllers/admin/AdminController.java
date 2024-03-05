@@ -1,8 +1,10 @@
-package app.v1.controllers;
+package app.v1.controllers.admin;
 
 import app.v1.entities.Employee;
 import app.v1.entities.Post;
+import app.v1.entities.Student;
 import app.v1.services.impl.PostServiceImpl;
+import app.v1.services.impl.StudentServiceImpl;
 import app.v1.services.interfaces.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,11 +22,14 @@ public class AdminController {
 
     private final PostServiceImpl postService;
 
+    private final StudentServiceImpl studentService;
+
 
     @Autowired
-    public AdminController(EmployeeService employeeService, PostServiceImpl postService) {
+    public AdminController(EmployeeService employeeService, PostServiceImpl postService, StudentServiceImpl studentService) {
         this.employeeService = employeeService;
         this.postService = postService;
+        this.studentService = studentService;
     }
 
     @GetMapping({"", "/", "/all"})
@@ -36,6 +41,8 @@ public class AdminController {
         model.addAttribute("employees", employees);
         model.addAttribute("posts", posts);
         model.addAttribute("newEmployee", new Employee());
+        model.addAttribute("newStudent", new Student());
+        model.addAttribute("students", studentService.getAll());
         return "admin.html";
     }
 
@@ -45,11 +52,17 @@ public class AdminController {
         return "redirect:/admin/employee/";
     }
 
-    @PostMapping("/addEmployee")
-    public String addEmployee(@ModelAttribute("newEmployee") Employee newEmployee){
-        System.out.println("yoooo");
-        employeeService.add(newEmployee);
-        return "redirect:/admin/employee/";
+    @GetMapping("/employee/addEmployee")
+    public String showEmployeeFrom(Model model){
+        model.addAttribute("newEmployee", new Employee());
+        model.addAttribute("posts", postService.getAll());
+        return "addEmployee.html";
+    }
+
+    @GetMapping("/student/addStudent")
+    public String showStudentForm(Model model){
+        model.addAttribute("newStudent", new Student());
+        return "addStudent.html";
     }
 }
 

@@ -53,7 +53,6 @@ public class Employee {
     @ManyToMany(mappedBy = "teachers")
     private List<Student> students;
 
-
     public Employee(Long id, String name, String surname, String phone, float experience, Post post) {
         this.id = id;
         this.name = name;

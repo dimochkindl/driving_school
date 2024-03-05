@@ -1,4 +1,4 @@
-package app.v1.controllers;
+package app.v1.controllers.admin;
 
 import app.v1.entities.Employee;
 import app.v1.services.impl.EmployeeServiceImpl;
@@ -27,10 +27,28 @@ public class AdminEmployeeController {
         return "redirect:/admin/";
     }
 
-    @PostMapping("/addEmployee")
+    @PostMapping("/add")
     public String addEmployee(@ModelAttribute("newEmployee") Employee newEmployee) {
         System.out.println("yoooo");
         employeeService.add(newEmployee);
+        return "redirect:/admin/";
+    }
+
+    @PostMapping("/editEmployee")
+    public String editEmployee(@ModelAttribute Employee employee) {
+
+        Long id = employee.getId();
+        String name = employee.getName();
+        String surname = employee.getSurname();
+        String phone = employee.getPhone();
+        float experience = employee.getExperience();
+        Long postId = employee.getPost().getId();
+
+        System.out.println("ediiiiiiit");
+
+        // Ваша логика для обновления сотрудника в базе данных
+
+        // После обновления сотрудника, можно вернуться на страницу сотрудников
         return "redirect:/admin/";
     }
 }

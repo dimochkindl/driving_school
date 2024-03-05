@@ -6,11 +6,13 @@ import app.v1.repositories.impl.PostDAOImpl;
 import app.v1.services.BaseServiceImpl;
 import app.v1.services.interfaces.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@ComponentScan(basePackages = "app.v1.repositories")
 public class PostServiceImpl extends BaseServiceImpl<Post> implements PostService {
 
     private final PostDAOImpl repo;

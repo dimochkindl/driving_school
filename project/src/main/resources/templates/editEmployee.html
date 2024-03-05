@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Employee</title>
+    <!-- Ваши стили здесь, если необходимо -->
+</head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 30px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            width: 200px;
+        }
+
+        button[type="submit"] {
+            margin-top: 10px;
+        }
+    </style>
+<body>
+<h2>Edit employee</h2>
+<form th:action="@{/admin/employee/edit}" method="post">
+    <input type="hidden" name="id" th:value="${employee.getId()}"/>
+    <input type="text" name="name" th:value="${employee.getName}"/>
+    <input type="text" name="surname" th:value="${employee.getSurname}"/>
+    <input type="text" name="phone" th:value="${employee.getPhone}"/>
+    <input type="text" name="experience" th:value="${employee.getExperience}"/>
+    <input type="hidden" name="postId" th:value="${service.getPost(employee.getId()).getId()}"/>
+    <button type="submit">Edit</button>
+</form>
+</body>
+</html>

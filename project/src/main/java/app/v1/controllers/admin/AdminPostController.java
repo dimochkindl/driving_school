@@ -1,4 +1,4 @@
-package app.v1.controllers;
+package app.v1.controllers.admin;
 
 import app.v1.services.impl.PostServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
