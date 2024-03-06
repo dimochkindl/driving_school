@@ -34,17 +34,17 @@ public class StudentTheoryRelation {
     @JoinColumn(name = "theory_id")
     private Theory theory;
 
-    public void setStudent(Student student){
+    public void setStudent(Student student) {
         this.student = student;
         student.getTheoryRelations().add(this);
     }
 
-    public void setEmployee(Employee employee){
+    public void setEmployee(Employee employee) {
         teacher = employee;
         employee.getTheoryRelations().add(this);
     }
 
-    public void setTheory(Theory theory){
+    public void setTheory(Theory theory) {
         this.theory = theory;
         theory.getTheoryRelations().add(this);
     }

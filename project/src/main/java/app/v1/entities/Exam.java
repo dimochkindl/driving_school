@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -28,6 +27,6 @@ public class Exam {
     @Column(name = "grade")
     private Long grade;
 
-    @OneToMany(mappedBy = "exam", cascade = CascadeType.ALL)
-    private List<ExamResults> examResultsList = new ArrayList<>();
+    @OneToMany(mappedBy = "exam", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ExamResults> examResultsList;
 }

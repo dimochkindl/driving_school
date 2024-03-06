@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bb48f91-61b1-4bc8-a949-85f1015e3d9a" name="Changes" comment="start to look up the hibernate technology">
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Car.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Exam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Exam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/ExamResults.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/ExamResults.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Practice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Practice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/StudentPracticeRelation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/StudentPracticeRelation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/StudentTheoryRelation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/StudentTheoryRelation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Theory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Theory.java" afterDir="false" />
-    </list>
+    <list default="true" id="6bb48f91-61b1-4bc8-a949-85f1015e3d9a" name="Changes" comment="correct entities" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -390,7 +378,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709682231562</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="correct entities">
+      <created>1709737520536</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1709737520536</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -409,7 +404,8 @@
     <MESSAGE value="some controllers, dto's..." />
     <MESSAGE value="add some admin functions" />
     <MESSAGE value="start to look up the hibernate technology" />
-    <option name="LAST_COMMIT_MESSAGE" value="start to look up the hibernate technology" />
+    <MESSAGE value="correct entities" />
+    <option name="LAST_COMMIT_MESSAGE" value="correct entities" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -34,7 +34,7 @@ public class Practice {
     @JoinColumn(name = "car_id")
     private Car car;
 
-    @OneToMany(mappedBy = "practice")
+    @OneToMany(mappedBy = "practice", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<StudentPracticeRelation> practiceRelations = new ArrayList<>();
 
     public Practice(Long id, LocalDate date, String place, float price) {

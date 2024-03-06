@@ -28,7 +28,7 @@ public class Post {
     @OneToMany(mappedBy = "post")
     private List<Employee> employees;
 
-    public String getPostAsString(){
+    public String getPostAsString() {
         return name;
     }
 
