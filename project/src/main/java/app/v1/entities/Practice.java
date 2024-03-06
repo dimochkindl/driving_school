@@ -3,13 +3,17 @@ package app.v1.entities;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.ToString;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "practice")
 @Data
+@ToString(exclude = "car")
 @AllArgsConstructor
 public class Practice {
     @Id
@@ -29,6 +33,9 @@ public class Practice {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "car_id")
     private Car car;
+
+    @OneToMany(mappedBy = "practice")
+    private List<StudentPracticeRelation> practiceRelations = new ArrayList<>();
 
     public Practice(Long id, LocalDate date, String place, float price) {
         this.id = id;

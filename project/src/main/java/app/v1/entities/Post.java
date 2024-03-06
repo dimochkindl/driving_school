@@ -4,12 +4,14 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 
 @Entity
 @Table(name = "post")
 @Data
+@ToString(exclude = "employees")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Post {
@@ -22,6 +24,9 @@ public class Post {
 
     @Column(name = "name")
     private String name;
+
+    @OneToMany(mappedBy = "post")
+    private List<Employee> employees;
 
     public String getPostAsString(){
         return name;

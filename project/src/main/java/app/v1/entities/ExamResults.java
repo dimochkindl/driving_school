@@ -33,4 +33,19 @@ public class ExamResults {
     @JoinColumn(name = "exam_id")
     private Exam exam;
 
+    public void setStudent(Student student){
+        this.student = student;
+        student.getStudentResults().add(this);
+    }
+
+    public void setEmployee(Employee employee){
+        teacher = employee;
+        employee.getExamResults().add(this);
+    }
+
+    public void setExam(Exam exam)
+    {
+        this.exam = exam;
+        exam.getExamResultsList().add(this);
+    }
 }

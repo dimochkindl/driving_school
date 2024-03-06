@@ -25,4 +25,19 @@ public class StudentPracticeRelation {
     @ManyToOne
     @JoinColumn(name = "practice_id")
     private Practice practice;
+
+    public void setStudent(Student student){
+        this.student = student;
+        student.getPracticeRelations().add(this);
+    }
+
+    public void setEmployee(Employee employee){
+        teacher = employee;
+        employee.getPracticeRelations().add(this);
+    }
+
+    public void setPractice(Practice practice){
+        this.practice = practice;
+        practice.getPracticeRelations().add(this);
+    }
 }

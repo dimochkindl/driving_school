@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "theory")
 @Data
@@ -20,5 +23,8 @@ public class Theory {
 
     @Column(name = "price", nullable = false)
     private float price;
+
+    @OneToMany(mappedBy = "theory")
+    private List<StudentTheoryRelation> theoryRelations = new ArrayList<>();
 
 }

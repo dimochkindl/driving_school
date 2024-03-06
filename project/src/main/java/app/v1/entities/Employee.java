@@ -4,12 +4,15 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "employee")
 @Data
+@ToString(exclude = "post")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Employee {
@@ -30,28 +33,18 @@ public class Employee {
     @Column(name = "experience")
     private float experience;
 
-    @ManyToMany
-    @JoinTable(
-            name = "exam_results",
-            joinColumns = @JoinColumn(name = "exam_id"),
-            inverseJoinColumns = @JoinColumn(name = "employee_id")
-    )
-    private List<Exam> exams;
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
+    private List<ExamResults> examResults = new ArrayList<>();
 
-    @ManyToMany
-    @JoinTable(
-            name = "student_practice_relation",
-            joinColumns = @JoinColumn(name = "practice_id"),
-            inverseJoinColumns = @JoinColumn(name = "employee_id")
-    )
-    private List<Exam> practices;
+    @OneToMany(mappedBy = "teacher")
+    private List<StudentTheoryRelation> theoryRelations = new ArrayList<>();
+
+    @OneToMany(mappedBy = "teacher")
+    private List<StudentPracticeRelation> practiceRelations = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "post_id")
     private Post post;
-
-    @ManyToMany(mappedBy = "teachers")
-    private List<Student> students;
 
     public Employee(Long id, String name, String surname, String phone, float experience, Post post) {
         this.id = id;

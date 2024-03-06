@@ -31,29 +31,15 @@ public class Student {
     @Column(name = "category", length = 3)
     private String category;
 
-    @ManyToMany
-    @JoinTable(
-            name = "exam_results",
-            joinColumns = @JoinColumn(name = "exam_id"),
-            inverseJoinColumns = @JoinColumn(name = "student_id")
-    )
-    private List<Exam> exams;
 
-    @ManyToMany
-    @JoinTable(
-            name = "student_practice_relation",
-            joinColumns = @JoinColumn(name = "practice_id"),
-            inverseJoinColumns = @JoinColumn(name = "student_id")
-    )
-    private List<Practice> practices;
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private List<ExamResults> studentResults = new ArrayList<>();
 
-    @ManyToMany
-    @JoinTable(
-            name = "exam_results",
-            joinColumns = @JoinColumn(name = "teacher_id"),
-            inverseJoinColumns = @JoinColumn(name = "student_id")
-    )
-    private List<Employee> teachers;
+    @OneToMany(mappedBy = "student")
+    private List<StudentTheoryRelation> theoryRelations;
+
+    @OneToMany(mappedBy = "student")
+    private List<StudentPracticeRelation> practiceRelations;
 
     public Student(Long id, String name, String surname, String phone, String category) {
         this.id = id;
