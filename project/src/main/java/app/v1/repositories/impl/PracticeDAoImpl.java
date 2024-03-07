@@ -36,7 +36,21 @@ public class PracticeDAoImpl implements PracticeDAO {
                 String model = rs.getString("model");
                 Long year = rs.getLong("year");
 
-                practices.add(new Practice(id, date.toLocalDate(), place, price, new Car(carId, number, model, year)));
+                var car = Car.builder()
+                        .id(carId)
+                        .number(number)
+                        .model(model)
+                        .year(year)
+                        .build();
+
+                var practice = Practice.builder()
+                        .id(id)
+                        .date(date.toLocalDate())
+                        .place(place)
+                        .price(price)
+                        .build();
+                practice.setCar(car);
+                practices.add(practice);
             }
 
             return practices;

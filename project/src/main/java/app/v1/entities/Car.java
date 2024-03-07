@@ -1,9 +1,7 @@
 package app.v1.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
 
@@ -12,6 +10,8 @@ import java.util.List;
 @Data
 @ToString(exclude = "practiceList")
 @AllArgsConstructor
+@Builder
+@NoArgsConstructor
 public class Car {
 
     @Id
@@ -25,7 +25,7 @@ public class Car {
     @Column(name = "model", length = 40)
     private String model;
 
-    @Column(name = "year", nullable = false)
+    @Column(name = "car_year", nullable = false)
     private Long year;
 
     @OneToMany(mappedBy = "car")

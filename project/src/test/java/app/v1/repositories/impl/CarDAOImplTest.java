@@ -34,10 +34,10 @@ class CarDAOImplTest {
     void usedForPractices_ShouldReturnListOfPractices() {
         // Arrange
         Long carId = 1L;
-        Car car = new Car(carId, "ABC123", "Toyota", 2010L);
+        var car = Car.builder().id(carId).number("ABC123").model("Toyota").year(2010L).build();
         LocalDate currentDate = LocalDate.now();
-        Practice practice1 = new Practice(1L, currentDate.minusDays(1), "Victory square", 100.0f, car);
-        Practice practice2 = new Practice(2L, currentDate.minusDays(2), "Zyuba", 150.0f, car);
+        Practice practice1 = Practice.builder().id(1L).date(currentDate.minusDays(1)).place("Victory square").price(100.0f).car(car).build();
+        Practice practice2 = Practice.builder().id(1L).date(currentDate.minusDays(4)).place("Zyba").price(120.0f).car(car).build();
         log.info("Add new Car {} with practices {}, {}", car, practice1, practice2);
         List<Practice> expectedPractices = Arrays.asList(practice1, practice2);
 

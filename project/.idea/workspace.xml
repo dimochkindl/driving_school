@@ -4,7 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bb48f91-61b1-4bc8-a949-85f1015e3d9a" name="Changes" comment="correct entities" />
+    <list default="true" id="6bb48f91-61b1-4bc8-a949-85f1015e3d9a" name="Changes" comment="correct entities">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_h2database_h2_2_2_224.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/app/v1/HibernateRunnerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Car.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Exam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Exam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Practice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Practice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Theory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Theory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/CarDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/CarDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/EmployeeDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/EmployeeDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/ExamDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/ExamDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/PostDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/PostDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/PracticeDAoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/PracticeDAoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/StudentDAOIml.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/StudentDAOIml.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/TheoryDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/TheoryDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/app/v1/repositories/impl/CarDAOImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/app/v1/repositories/impl/CarDAOImplTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,8 +39,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -75,7 +97,7 @@
       <recent name="app.v1" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CarDAOImplTest.usedForPractices_ShouldReturnListOfPractices">
+  <component name="RunManager" selected="JUnit.HibernateRunnerTest.checkH2">
     <configuration name="V1Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="20" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -103,6 +125,22 @@
       <option name="PACKAGE_NAME" value="app.v1.repositories.impl" />
       <option name="MAIN_CLASS_NAME" value="app.v1.repositories.impl.CarDAOImplTest" />
       <option name="METHOD_NAME" value="usedForPractices_ShouldReturnListOfPractices" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HibernateRunnerTest.checkH2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.v1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="app.v1" />
+      <option name="MAIN_CLASS_NAME" value="app.v1.HibernateRunnerTest" />
+      <option name="METHOD_NAME" value="checkH2" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -140,36 +178,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StudentDAOImlTest.save" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="app.v1.repositories.impl.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="app.v1.repositories.impl" />
-      <option name="MAIN_CLASS_NAME" value="app.v1.repositories.impl.StudentDAOImlTest" />
-      <option name="METHOD_NAME" value="save" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.V1Application" />
+      <item itemvalue="JUnit.HibernateRunnerTest.checkH2" />
       <item itemvalue="JUnit.CarDAOImplTest.usedForPractices_ShouldReturnListOfPractices" />
       <item itemvalue="JUnit.StudentDAOImlTest.delete" />
       <item itemvalue="JUnit.StudentDAOImlTest.getBySurname" />
-      <item itemvalue="JUnit.StudentDAOImlTest.save" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.HibernateRunnerTest.checkH2" />
         <item itemvalue="JUnit.CarDAOImplTest.usedForPractices_ShouldReturnListOfPractices" />
         <item itemvalue="Application.V1Application" />
         <item itemvalue="JUnit.StudentDAOImlTest.delete" />
         <item itemvalue="JUnit.StudentDAOImlTest.getBySurname" />
-        <item itemvalue="JUnit.StudentDAOImlTest.save" />
       </list>
     </recent_temporary>
   </component>
@@ -385,7 +407,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709737520536</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="correct entities">
+      <created>1709737943066</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1709737943066</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

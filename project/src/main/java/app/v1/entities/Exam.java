@@ -2,6 +2,7 @@ package app.v1.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -11,6 +12,7 @@ import java.util.List;
 @Table(name = "exam")
 @Data
 @AllArgsConstructor
+@Builder
 public class Exam {
 
     @Id

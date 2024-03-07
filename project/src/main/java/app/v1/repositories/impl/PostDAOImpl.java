@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 @Repository
@@ -24,21 +25,27 @@ public class PostDAOImpl implements PostDAO {
 
         String query = "select * from post";
 
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
+        if (connection != null) {
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
 
-            ResultSet rs = statement.executeQuery();
+                ResultSet rs = statement.executeQuery();
 
-            while (rs.next()) {
-                Long id = rs.getLong("id");
-                String spec = rs.getString("specialization");
-                String name = rs.getString("name");
+                while (rs.next()) {
+                    Long id = rs.getLong("id");
+                    String spec = rs.getString("specialization");
+                    String name = rs.getString("name");
 
-                posts.add(new Post(id, spec, name));
+                    posts.add(Post.builder()
+                            .id(id)
+                            .specialization(spec)
+                            .name(name)
+                            .build());
+                }
+
+                return posts;
+            } catch (SQLException ex) {
+                ex.printStackTrace();
             }
-
-            return posts;
-        } catch (SQLException ex) {
-            ex.printStackTrace();
         }
         return null;
     }
@@ -48,7 +55,7 @@ public class PostDAOImpl implements PostDAO {
         Connection connection = DbConnector.getConnection();
         String query = "select * from post where id = ?";
 
-        try(PreparedStatement statement = connection.prepareStatement(query)){
+        try(PreparedStatement statement = Objects.requireNonNull(connection).prepareStatement(query)){
 
             statement.setLong(1, id);
             ResultSet rs = statement.executeQuery();
@@ -56,7 +63,11 @@ public class PostDAOImpl implements PostDAO {
             if(rs.next()){
                 String spec = rs.getString("specialization");
                 String name = rs.getString("name");
-                return new Post(id, spec, name);
+                return Post.builder()
+                        .id(id)
+                        .specialization(spec)
+                        .name(name)
+                        .build();
             }
         }catch(SQLException ex){
             ex.printStackTrace();
@@ -69,7 +80,7 @@ public class PostDAOImpl implements PostDAO {
         Connection connection = DbConnector.getConnection();
         String query = "delete from post where id = ?";
 
-        try(PreparedStatement statement = connection.prepareStatement(query)){
+        try(PreparedStatement statement = Objects.requireNonNull(connection).prepareStatement(query)){
 
             statement.setLong(1, id);
             int rowsChanged = statement.executeUpdate();
@@ -84,7 +95,7 @@ public class PostDAOImpl implements PostDAO {
     public void save(Post post) {
         Connection connection = DbConnector.getConnection();
         String query = "insert into post  (specialization, name) values(?, ?)";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
+        try (PreparedStatement statement = Objects.requireNonNull(connection).prepareStatement(query)) {
 
             statement.setString(1, post.getSpecialization());
             statement.setString(2, post.getSpecialization());
@@ -100,7 +111,7 @@ public class PostDAOImpl implements PostDAO {
     public void update(Post post) {
         Connection connection = DbConnector.getConnection();
         String query = "update post set specialization = ?, name = ? where id = ?)";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
+        try (PreparedStatement statement = Objects.requireNonNull(connection).prepareStatement(query)) {
             statement.setString(1, post.getSpecialization());
             statement.setString(2, post.getSpecialization());
             statement.setLong(3, post.getId());

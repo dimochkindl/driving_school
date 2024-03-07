@@ -29,7 +29,12 @@ public class ExamDAOImpl implements ExamDAO {
                 Date date = rs.getDate("date");
                 Long grade = rs.getLong("grade");
 
-                exams.add(new Exam(id, exam, date.toLocalDate(), grade));
+                exams.add(Exam.builder()
+                        .id(id)
+                        .exam(exam)
+                        .date(date.toLocalDate())
+                        .grade(grade)
+                        .build());
             }
 
             return exams;
@@ -54,7 +59,12 @@ public class ExamDAOImpl implements ExamDAO {
                 Date date = rs.getDate("date");
                 Long grade = rs.getLong("grade");
 
-                return new Exam(id, exam, date.toLocalDate(), grade);
+                return Exam.builder()
+                        .id(id)
+                        .exam(exam)
+                        .date(date.toLocalDate())
+                        .grade(grade)
+                        .build();
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -129,7 +139,12 @@ public class ExamDAOImpl implements ExamDAO {
                 String exam = rs.getString("exam");
                 Long grade = rs.getLong("grade");
 
-                exams.add(new Exam(id, exam, date.toLocalDate(), grade));
+                exams.add(Exam.builder()
+                        .id(id)
+                        .exam(exam)
+                        .date(date.toLocalDate())
+                        .grade(grade)
+                        .build());
             }
 
             return exams;

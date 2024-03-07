@@ -30,7 +30,11 @@ public class TheoryDAOImpl implements TheoryDAO {
                 Long id = rs.getLong("id");
                 String theme = rs.getString("theme");
                 float price = rs.getFloat("price");
-                theories.add(new Theory(id, theme, price));
+                theories.add(Theory.builder()
+                        .id(id)
+                        .theme(theme)
+                        .price(price)
+                        .build());
             }
 
             return theories;
@@ -53,7 +57,7 @@ public class TheoryDAOImpl implements TheoryDAO {
             if(rs.next()){
                 String theme = rs.getString("theme");
                 float price = rs.getFloat("price");
-                return new Theory(id, theme, price);
+                return Theory.builder().id(id).theme(theme).price(price).build();
             }
         }catch(SQLException ex){
             ex.printStackTrace();
@@ -127,7 +131,11 @@ public class TheoryDAOImpl implements TheoryDAO {
                 Long id = rs.getLong("id");
                 String theme = rs.getString("theme");
                 float price = rs.getFloat("price");
-                 theories.add( new Theory(id, theme, price));
+                 theories.add( Theory.builder()
+                         .id(id)
+                         .theme(theme)
+                         .price(price)
+                         .build());
             }
 
             return theories;
@@ -150,7 +158,11 @@ public class TheoryDAOImpl implements TheoryDAO {
             if(rs.next()){
                 Long id = rs.getLong("id");
                 float price = rs.getFloat("price");
-                return new Theory(id, theme, price);
+                return Theory.builder()
+                        .id(id)
+                        .theme(theme)
+                        .price(price)
+                        .build();
             }
         }catch(SQLException ex){
             ex.printStackTrace();

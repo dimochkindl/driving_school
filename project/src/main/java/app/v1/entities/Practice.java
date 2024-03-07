@@ -2,6 +2,7 @@ package app.v1.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 
@@ -15,6 +16,7 @@ import java.util.List;
 @Data
 @ToString(exclude = "car")
 @AllArgsConstructor
+@Builder
 public class Practice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

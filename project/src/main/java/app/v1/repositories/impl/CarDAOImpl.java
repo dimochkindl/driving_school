@@ -43,7 +43,14 @@ public class CarDAOImpl implements CarDAO {
                 String model = resultSet.getString("model");
                 Long year = resultSet.getLong("year");
 
-                cars.add(new Car(id, number, model, year));
+                var car = Car.builder()
+                        .id(id)
+                        .model(model)
+                        .number(number)
+                        .year(year)
+                        .build();
+
+                cars.add(car);
             }
             log.info("Cars result set: ", cars);
             return cars;
@@ -65,7 +72,13 @@ public class CarDAOImpl implements CarDAO {
                 String number = resultSet.getString("car_number");
                 String model = resultSet.getString("model");
                 Long year = resultSet.getLong("year");
-                return new Car(id, number, model, year);
+                var car = Car.builder()
+                        .id(id)
+                        .model(model)
+                        .number(number)
+                        .year(year)
+                        .build();
+                return car;
             }
 
         } catch (SQLException e) {

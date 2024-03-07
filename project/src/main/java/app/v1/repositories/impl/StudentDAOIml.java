@@ -5,13 +5,10 @@ import app.v1.repositories.DbConnector;
 import app.v1.repositories.dao.StudentDAO;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
-import java.sql.Date;
 import java.util.List;
+import java.util.Objects;
 
 
 @Repository
@@ -19,12 +16,12 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
     @Override
     public List<Student> getAll() {
         Connection connection = getConnection();
-        PreparedStatement statement = null;
+        PreparedStatement statement;
         List<Student> students = new ArrayList<>();
 
         String query = "select * from student";
         try {
-            statement = connection.prepareStatement(query);
+            statement = Objects.requireNonNull(connection).prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -42,7 +39,7 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
     public Student getById(Long id) {
         Connection connection = getConnection();
         String query = "select * from student where id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(query);) {
+        try (PreparedStatement statement = Objects.requireNonNull(connection).prepareStatement(query)) {
 
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
@@ -62,7 +59,7 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
         Connection connection = getConnection();
         String query = "select * from student where surname = ?";
         List<Student> students = null;
-        try (PreparedStatement statement = connection.prepareStatement(query);) {
+        try (PreparedStatement statement = Objects.requireNonNull(connection).prepareStatement(query)) {
 
             statement.setString(1, surname);
             ResultSet resultSet = statement.executeQuery();
@@ -82,7 +79,7 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
     public void update(Student student) {
         Connection connection = getConnection();
         String query = "update student set name = ? , surname = ?, phone_number = ?, category = ? where id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
+        try (PreparedStatement statement = Objects.requireNonNull(connection).prepareStatement(query)) {
 
             statement.setString(1, student.getName());
             statement.setString(2, student.getSurname());
@@ -99,7 +96,7 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
     @Override
     public void delete(Long id) {
         try (Connection connection = getConnection()) {
-            connection.setAutoCommit(false);
+            Objects.requireNonNull(connection).setAutoCommit(false);
 
             executeUpdate(connection, "delete from student where id = ?", id);
             executeUpdate(connection, "delete from exam_results where student_id = ?", id);
@@ -124,7 +121,7 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
     public void save(Student student) {
         Connection connection = getConnection();
         String query = "insert into student  (name, surname, phone_number, category) values(?, ?, ?, ?)";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
+        try (PreparedStatement statement = Objects.requireNonNull(connection).prepareStatement(query)) {
 
 
             statement.setString(1, student.getName());
@@ -140,12 +137,12 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
 
     public List<Exam> getExams(Long id) {
         Connection connection = getConnection();
-        PreparedStatement statement = null;
+        PreparedStatement statement;
         List<Exam> exams = new ArrayList<>();
 
         String query = "select from exam e join exam_results er on e.id = er.exam_id where er.student_id = ?";
         try {
-            statement = connection.prepareStatement(query);
+            statement = Objects.requireNonNull(connection).prepareStatement(query);
             statement.setLong(1, id);
 
             ResultSet resultSet = statement.executeQuery();
@@ -156,8 +153,12 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
                 Date examDate = resultSet.getDate("date");
                 Long examGrade = resultSet.getLong("grade");
 
-                Exam exam = new Exam(examId, examName, examDate.toLocalDate(), examGrade);
-                exams.add(exam);
+                exams.add(Exam.builder()
+                        .id(examId)
+                        .exam(examName)
+                        .date(examDate.toLocalDate())
+                        .grade(examGrade)
+                        .build());
             }
 
             return exams;
@@ -171,12 +172,12 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
 
     public List<Practice> getPractices(Long id) {
         Connection connection = getConnection();
-        PreparedStatement statement = null;
+        PreparedStatement statement;
         List<Practice> practices = new ArrayList<>();
         String query = "select * from practice p join student_practice_relation sp on p.id = sp.practice_id where sp.student_id = ?";
 
         try {
-            statement = connection.prepareStatement(query);
+            statement = Objects.requireNonNull(connection).prepareStatement(query);
             statement.setLong(1, id);
 
             ResultSet rs = statement.executeQuery();
@@ -189,8 +190,14 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
                 Long car_id = rs.getLong("car_id");
 
                 Car car = getCarForPractice(car_id);
-                Practice practice = new Practice(practiceId, date.toLocalDate(), place, price, car);
-                practices.add(practice);
+
+                practices.add(Practice.builder()
+                        .id(practiceId)
+                        .date(date.toLocalDate())
+                        .place(place)
+                        .price(price)
+                        .car(car)
+                        .build());
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -202,7 +209,7 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
         Connection connection = getConnection();
         String query = "select * from car where id = ?";
 
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
+        try (PreparedStatement statement = Objects.requireNonNull(connection).prepareStatement(query)) {
             statement.setLong(1, id);
 
             ResultSet rs = statement.executeQuery();
@@ -212,7 +219,12 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
             String model = rs.getString("model");
             Long year = rs.getLong("year");
 
-            return new Car(car_id, number, model, year);
+            return Car.builder()
+                    .id(car_id)
+                    .model(model)
+                    .number(number)
+                    .year(year)
+                    .build();
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -222,10 +234,9 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
 
     private Post getPost(Long id) {
         Connection connection = getConnection();
-        List<Practice> practices = new ArrayList<>();
         String query = "select * from post where id = ?";
 
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
+        try (PreparedStatement statement = Objects.requireNonNull(connection).prepareStatement(query)) {
             statement.setLong(1, id);
 
             ResultSet rs = statement.executeQuery();
@@ -234,7 +245,11 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
             String specialization = rs.getString("specialization");
             String name = rs.getString("name");
 
-            return new Post(post_id, specialization, name);
+            return Post.builder()
+                    .id(post_id)
+                    .specialization(specialization)
+                    .name(name)
+                    .build();
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -252,7 +267,7 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
                 "join exam_results er on e.id = st.teacher_id and er.student_id = ?";
 
 
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
+        try (PreparedStatement statement = Objects.requireNonNull(connection).prepareStatement(query)) {
 
             statement.setLong(1, id);
             statement.setLong(2, id);
@@ -290,7 +305,7 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
     public Long getLastId() {
         Connection connection = getConnection();
         String query = "SELECT id FROM student ORDER BY id DESC LIMIT 1;\n";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
+        try (PreparedStatement statement = Objects.requireNonNull(connection).prepareStatement(query)) {
             ResultSet rs = statement.executeQuery();
 
             if (rs.next()) {

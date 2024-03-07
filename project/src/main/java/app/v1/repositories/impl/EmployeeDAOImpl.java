@@ -159,7 +159,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                 Long post_id = rs.getLong("id");
                 String specialization = rs.getString("specialization");
                 String name = rs.getString("name");
-                return new Post(post_id, specialization, name);
+                var post = Post.builder().id(id).specialization(specialization).name(name).build();
+                return post;
             } else {
                 // Можно выбрать другое действие, например, бросить исключение или вернуть null, в зависимости от вашего случая использования.
                 System.out.println("Запись с id=" + id + " не найдена.");
