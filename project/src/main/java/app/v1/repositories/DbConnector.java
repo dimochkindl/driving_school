@@ -5,7 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DbConnector {
-    public static Connection getConnection(){
+
+    public static Connection getConnection() {
         final String url = "jdbc:postgresql://localhost:5432/driving_school";
         final String password = "lilasgard228";
         final String username = "postgres";
@@ -19,7 +20,7 @@ public class DbConnector {
         return null;
     }
 
-    public static void closeConnection(Connection connection){
+    public static void closeConnection(Connection connection) {
         if (connection != null) {
             try {
                 connection.close();

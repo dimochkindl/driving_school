@@ -1,6 +1,7 @@
 package app.v1;
 
 import app.v1.entities.Car;
+import lombok.Cleanup;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,7 @@ public class HibernateRunnerTest {
 
     @Test
     public void checkH2(){
-        var session = sessionFactory.openSession();
+        @Cleanup var session = sessionFactory.openSession();
 
         session.beginTransaction();
 
@@ -34,7 +35,7 @@ public class HibernateRunnerTest {
                 .year(2023L)
                 .build();
 
-        session.save(car);
+        session.persist(car);
         session.getTransaction().commit();
         log.info("Car saved with ID: {}", car.getId());
 

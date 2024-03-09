@@ -26,6 +26,7 @@ public class Theory {
     @Column(name = "price", nullable = false)
     private float price;
 
+    @Builder.Default
     @OneToMany(mappedBy = "theory", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<StudentTheoryRelation> theoryRelations = new ArrayList<>();
 

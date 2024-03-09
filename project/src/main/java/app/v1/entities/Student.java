@@ -24,16 +24,17 @@ public class Student {
     @Column(name = "name", length = 30, nullable = false)
     private String name;
 
-    @Column(name = "surname",length = 30,nullable = false)
+    @Column(name = "surname", length = 30, nullable = false)
     private String surname;
 
+    @Builder.Default
     @Column(name = "phone_number", length = 20, nullable = false)
-    private String phone;
+    private String phone = "+375-33-812-495-0";
 
     @Column(name = "category", length = 3)
     private String category;
 
-
+    @Builder.Default
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<ExamResults> studentResults = new ArrayList<>();
 

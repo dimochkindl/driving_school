@@ -3,6 +3,8 @@ package app.v1.repositories.impl;
 import app.v1.entities.*;
 import app.v1.repositories.DbConnector;
 import app.v1.repositories.dao.StudentDAO;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -13,6 +15,12 @@ import java.util.Objects;
 
 @Repository
 public class StudentDAOIml extends DbConnector implements StudentDAO {
+    private SessionFactory sessionFactory;
+    @Autowired
+    public StudentDAOIml(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
     @Override
     public List<Student> getAll() {
         Connection connection = getConnection();

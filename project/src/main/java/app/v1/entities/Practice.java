@@ -1,10 +1,7 @@
 package app.v1.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -14,8 +11,9 @@ import java.util.List;
 @Entity
 @Table(name = "practice")
 @Data
-@ToString(exclude = "car")
+@ToString(exclude = {"car", "practiceRelations"})
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class Practice {
     @Id
@@ -36,6 +34,7 @@ public class Practice {
     @JoinColumn(name = "car_id")
     private Car car;
 
+    @Builder.Default
     @OneToMany(mappedBy = "practice", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<StudentPracticeRelation> practiceRelations = new ArrayList<>();
 

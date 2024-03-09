@@ -4,6 +4,11 @@ import app.v1.entities.Employee;
 import app.v1.entities.Post;
 import app.v1.repositories.DbConnector;
 import app.v1.repositories.dao.PostDAO;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -17,6 +22,13 @@ import java.util.Objects;
 
 @Repository
 public class PostDAOImpl implements PostDAO {
+
+    private SessionFactory sessionFactory;
+
+    @Autowired
+    public PostDAOImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public List<Post> getAll() {
@@ -126,6 +138,12 @@ public class PostDAOImpl implements PostDAO {
     //hibernate
     @Override
     public List<Employee> getEmployeesByPostId(Long id) {
+        /*Session session = sessionFactory.openSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery criteria = builder.createQuery();
+        var employees = criteria.from(Employee.class);
+        criteria.select(employees).from(Employee.class).join(, id)
+*/
         return null;
     }
 

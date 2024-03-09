@@ -6,11 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
-import java.util.Objects;
 
 public class BaseServiceImpl<T> implements BaseService<T> {
 
-    private BaseRepository<T> repository;
+    private final BaseRepository<T> repository;
 
     @Autowired
     public BaseServiceImpl(BaseRepository<T> repository) {
@@ -33,7 +32,7 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 
     @Override
     @Transactional(readOnly = true)
-    public Collection getAll() {
+    public Collection<T> getAll() {
         return repository.getAll();
     }
 
@@ -45,7 +44,7 @@ public class BaseServiceImpl<T> implements BaseService<T> {
     @SneakyThrows
     @Override
     public void remove(Long id) {
-        if(repository.getById(id) != null){
+        if (repository.getById(id) != null) {
             repository.delete(id);
         }
 

@@ -4,15 +4,31 @@ import app.v1.entities.Car;
 import app.v1.entities.Practice;
 import app.v1.repositories.DbConnector;
 import app.v1.repositories.dao.PracticeDAO;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import lombok.Cleanup;
+import lombok.extern.slf4j.Slf4j;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 
 @Repository
-public class PracticeDAoImpl implements PracticeDAO {
+@Slf4j
+public class PracticeDAOImpl implements PracticeDAO {
+
+    private SessionFactory sessionFactory;
+
+    @Autowired
+    public PracticeDAOImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
     @Override
     public List<Practice> getAll() {
         Connection connection = DbConnector.getConnection();
@@ -136,13 +152,24 @@ public class PracticeDAoImpl implements PracticeDAO {
     }
 
     @Override
-    public List<Practice> getPracticesByDate(Date date) {
-        return null;
+    public List<Object> getPracticesByDate(LocalDate date) {
+        log.info("Date: {}", date);
+        @Cleanup var session = sessionFactory.openSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Object> criteria = cb.createQuery();
+        var practices = criteria.from(Practice.class);
+        criteria.select(practices).where(cb.equal(practices.get("date"), date));
+        return session.createQuery(criteria).list();
     }
 
     @Override
-    public List<Practice> getPracticeByPlace(String place) {
-        return null;
+    public List<Object> getPracticeByPlace(String place) {
+        @Cleanup var session = sessionFactory.openSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Object> criteria = cb.createQuery();
+        var practices = criteria.from(Practice.class);
+        criteria.select(practices).where(cb.equal(practices.get("place"), place));
+        return session.createQuery(criteria).list();
     }
 
     @Override

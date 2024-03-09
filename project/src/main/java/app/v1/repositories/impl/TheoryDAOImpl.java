@@ -209,6 +209,8 @@ public class TheoryDAOImpl implements TheoryDAO {
                 grades.add(rs.getLong(1));
             }
 
+            return grades;
+
         }catch(SQLException ex){
             ex.printStackTrace();
         }
