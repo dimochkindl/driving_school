@@ -134,26 +134,36 @@ public class PostDAOImpl implements PostDAO {
         }
     }
 
-
-    //hibernate
     @Override
-    public List<Employee> getEmployeesByPostId(Long id) {
-        /*Session session = sessionFactory.openSession();
+    public List<Object> getEmployeesByPostId(Long id) {
+        Session session = sessionFactory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery criteria = builder.createQuery();
+        CriteriaQuery<Object> criteria = builder.createQuery();
         var employees = criteria.from(Employee.class);
-        criteria.select(employees).from(Employee.class).join(, id)
-*/
-        return null;
+        var post = employees.join("post");
+        criteria.select(employees).where(builder.equal(post.get("id"), id));
+        return session.createQuery(criteria).list();
     }
 
     @Override
-    public List<Employee> getBySpecialization(String spec) {
-        return null;
+    public List<Object> getBySpecialization(String spec) {
+        Session session = sessionFactory.openSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        var criteria = builder.createQuery();
+        var employees = criteria.from(Employee.class);
+        var post = employees.join("post");
+        criteria.select(employees).where(builder.equal(post.get("specialization"), spec));
+        return session.createQuery(criteria).list();
     }
 
     @Override
-    public List<Employee> getByPost(String post) {
-        return null;
+    public List<Object> getByPost(String post) {
+        Session session = sessionFactory.openSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Object> criteria = builder.createQuery();
+        var employees = criteria.from(Employee.class);
+        var posts = employees.join("post");
+        criteria.select(employees).where(builder.equal(posts.get("name"), post));
+        return session.createQuery(criteria).list();
     }
 }

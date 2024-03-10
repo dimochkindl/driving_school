@@ -98,8 +98,27 @@
             <version>2.2.224</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>codegen-utils</artifactId>
+            <version>5.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-core</artifactId>
+            <version>5.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-jcache</artifactId>
+            <version>6.4.4.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>3.9.7</version>
+        </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>

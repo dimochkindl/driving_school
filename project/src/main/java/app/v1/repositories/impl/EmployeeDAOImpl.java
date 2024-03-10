@@ -1,7 +1,10 @@
 package app.v1.repositories.impl;
 
+import app.v1.dto.filters.EmployeeFilter;
 import app.v1.entities.*;
+import app.v1.repositories.QPredicate;
 import app.v1.repositories.dao.EmployeeDAO;
+import com.querydsl.core.types.Predicate;
 import lombok.Cleanup;
 import org.springframework.stereotype.Repository;
 
@@ -202,6 +205,16 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         }
     }
 
+
+    @Override
+    public List<Employee> getBySurnameAndLastName(EmployeeFilter filter) {
+        /*List<Predicate> predicates = new ArrayList<>();
+        Employee employee = new Employee();
+        if(filter.getFirstname() != null){
+            predicates.add(employee.getName());
+        }*/
+        return null;
+    }
 
     //for hibernate
     @Override

@@ -1,5 +1,6 @@
 package app.v1.repositories.dao;
 
+import app.v1.dto.filters.EmployeeFilter;
 import app.v1.entities.Employee;
 import app.v1.entities.Post;
 import app.v1.entities.Practice;
@@ -11,6 +12,8 @@ import java.util.List;
 public interface EmployeeDAO extends BaseRepository<Employee> {
 
     List<Theory> getTheoryLessons(Long id);
+
+    List<Employee> getBySurnameAndLastName(EmployeeFilter filter);
 
     List<Employee> getBySurname(String surname);
 
