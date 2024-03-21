@@ -4,23 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bb48f91-61b1-4bc8-a949-85f1015e3d9a" name="Changes" comment="implements some methods and add 2nd level cache properties">
-      <change afterPath="$PROJECT_DIR$/src/test/java/app/v1/repositories/impl/EmployeeDAOImplTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/app/v1/repositories/impl/StudentDAOImlTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/dto/filters/EmployeeFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/dto/filters/EmployeeFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Exam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Exam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/ExamResults.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/ExamResults.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/StudentPracticeRelation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/StudentPracticeRelation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/StudentTheoryRelation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/StudentTheoryRelation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/Theory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/Theory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/id/ExamResultId.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/id/ExamResultId.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/id/StudentTheoryRelationId.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/id/StudentTheoryRelationId.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/EmployeeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/EmployeeDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/StudentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/StudentDAO.java" afterDir="false" />
+    <list default="true" id="6bb48f91-61b1-4bc8-a949-85f1015e3d9a" name="Changes" comment="complete student/employee daoImpl">
       <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/EmployeeDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/EmployeeDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/StudentDAOIml.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/StudentDAOIml.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -436,7 +421,14 @@
       <option name="project" value="LOCAL" />
       <updated>1710031778997</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="complete student/employee daoImpl">
+      <created>1711019613829</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1711019613829</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -460,7 +452,8 @@
     <MESSAGE value="trying to get hibernate model, to use _" />
     <MESSAGE value="add some criteria implementations and tested it" />
     <MESSAGE value="implements some methods and add 2nd level cache properties" />
-    <option name="LAST_COMMIT_MESSAGE" value="implements some methods and add 2nd level cache properties" />
+    <MESSAGE value="complete student/employee daoImpl" />
+    <option name="LAST_COMMIT_MESSAGE" value="complete student/employee daoImpl" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -472,7 +465,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/EmployeeDAOImpl.java</url>
-          <line>128</line>
+          <line>132</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

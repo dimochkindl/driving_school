@@ -43,8 +43,10 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
                 Student student = createStudent(resultSet);
                 students.add(student);
             }
+            log.info("students: {}", students);
             return students;
         } catch (SQLException e) {
+            log.warn("couldn't retrieve students: ", e);
             throw new RuntimeException(e);
         }
     }
@@ -63,6 +65,7 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
             }
 
         } catch (SQLException e) {
+            log.warn("couldn't retrieve student: ", e);
             throw new RuntimeException(e);
         }
         return null;
@@ -83,8 +86,10 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
                 students.add(stud);
             }
 
+            log.info("students: {}", students);
             return students;
         } catch (SQLException e) {
+            log.warn("couldn't retrieve students by surname: ", e);
             throw new RuntimeException(e);
         }
     }
@@ -103,7 +108,7 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
 
             statement.executeUpdate();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            log.warn("couldn't update student: ", ex);
         }
     }
 
@@ -119,7 +124,7 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
 
             connection.commit();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.warn("couldn't delete student: ", e);
         }
     }
 
@@ -145,7 +150,7 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
 
             statement.executeUpdate();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            log.warn("couldn't save student: ", ex);
         }
     }
 
@@ -175,8 +180,11 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
                         .build());
             }
 
+            log.info("exams for student: {}", exams);
+
             return exams;
         } catch (SQLException e) {
+            log.warn("couldn't retrieve exams: ", e);
             throw new RuntimeException(e);
         } finally {
             closeConnection(connection);
@@ -214,8 +222,9 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
                         .build());
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            log.warn("couldn't getPractices: ", ex);
         }
+        log.info("practices : {}", practices);
         return practices;
     }
 
@@ -241,7 +250,7 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
                     .build();
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            log.warn("couldn't retrieve cars: ", ex);
         }
         return null;
     }
@@ -266,7 +275,7 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
                     .build();
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            log.warn("couldn't retrieve post: ", ex);
         }
         return null;
     }
@@ -301,7 +310,7 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
 
             return employees;
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            log.warn("couldn't retrieve teachers: ", ex);
         }
         return null;
     }
@@ -316,18 +325,9 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
         return new Student(id, name, surname, phoneNumber, category);
     }
 
-    //Methods for hibernate
     @Override
     public List<Integer> getTheoryGrades(int id) {
         Session session = sessionFactory.openSession();
-
-        //not work
-
-        /*CriteriaBuilder cb = session.getCriteriaBuilder();
-        var criteria = cb.createQuery();
-        var grades = criteria.from(StudentTheoryRelation.class);
-        criteria.select(grades).where(cb.equal(grades.get("id").get("student"), id));*/
-
         var list = session.createQuery("SELECT r from StudentTheoryRelation r WHERE r.student.id = :studentId", StudentTheoryRelation.class)
                 .setParameter("studentId", id).list();
 

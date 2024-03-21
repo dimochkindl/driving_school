@@ -8,6 +8,7 @@ import app.v1.repositories.dao.EmployeeDAO;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Predicate;
 import lombok.Cleanup;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ import java.util.List;
 import static app.v1.repositories.DbConnector.getConnection;
 
 @Repository
+@Slf4j
 public class EmployeeDAOImpl implements EmployeeDAO {
 
     private final SessionFactory sessionFactory;
@@ -48,8 +50,10 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                 Employee employee = createEmployee(resultSet);
                 employees.add(employee);
             }
+            log.info("employees : {}", employees);
             return employees;
         } catch (SQLException e) {
+            log.error("error while retrieving employees: ", e);
             throw new RuntimeException(e);
         }
     }
@@ -60,7 +64,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         String surname = resultSet.getString("surname");
         String phoneNumber = resultSet.getString("phone_number");
         float experience = resultSet.getFloat("experience");
-
         return new Employee(id, name, surname, phoneNumber, experience);
     }
 
@@ -74,10 +77,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
+                log.info("employee by id: {}", resultSet);
                 return createEmployee(resultSet);
             }
 
         } catch (SQLException e) {
+            log.warn("could not retrieve employee: ", e);
             throw new RuntimeException(e);
         }
         return null;
@@ -95,7 +100,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             statement.setFloat(4, employee.getExperience());
             statement.setLong(5, employee.getId());
 
-
+            log.info("updated employee");
             statement.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -113,8 +118,9 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             executeUpdate(connection, "delete from student_theory_relation where teacher_id = ?", id);
 
             connection.commit();
+            log.info("deleted employee");
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.warn("could not delete employee: ", e);
         }
     }
 
@@ -137,8 +143,9 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             statement.setLong(5, employee.getPost().getId());
 
             statement.executeUpdate();
+            log.info("saved employee");
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            log.warn("could not save employee: ", ex);
         }
     }
 
@@ -159,6 +166,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
             return employees;
         } catch (SQLException e) {
+            log.warn("could not retrieve employee by surname: ", e);
             throw new RuntimeException(e);
         }
     }
@@ -179,11 +187,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                     String name = rs.getString("name");
                     return Post.builder().id(post_id).specialization(specialization).name(name).build();
                 } else {
-                    System.out.println("Запись с id=" + id + " не найдена.");
+                    log.info("Post with id=" + id + " not found");
                     return null;
                 }
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                log.warn("could not retrieve post: ", ex);
             } finally {
                 try {
                     connection.close();
@@ -203,8 +211,9 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         if (connection != null) {
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 int rowsChanged = statement.executeUpdate();
+                log.info("rows changed while delete relation: {}", rowsChanged);
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                log.warn("could not retire from theory: ", ex);
             }
         }
     }
@@ -217,9 +226,10 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             assert connection != null;
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 int rowsChanged = statement.executeUpdate();
+                log.info("rows changed while delete relation: {}", rowsChanged);
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            log.warn("could not retire from practice: ", ex);
         }
     }
 
@@ -229,25 +239,24 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         Session session = sessionFactory.openSession();
         CriteriaBuilder cb = session.getCriteriaBuilder();
         var criteria = cb.createQuery();
-        var employees  = criteria.from(Employee.class);
+        var employees = criteria.from(Employee.class);
         List<Predicate> predicates = new ArrayList<>();
-        if(filter.getFirstname() != null){
+        if (filter.getFirstname() != null) {
             predicates.add(cb.equal(employees.get("name"), filter.getFirstname()));
         }
-        if(filter.getLastname() != null){
+        if (filter.getLastname() != null) {
             predicates.add(cb.equal(employees.get("surname"), filter.getLastname()));
         }
         criteria.select(employees).where(cb.and(predicates.toArray(new Predicate[0])));
         return session.createQuery(criteria).list();
     }
 
-    //for hibernate
     @Override
     public List<Object> getPracticeLessons(Long id) {
         Session session = sessionFactory.openSession();
         CriteriaBuilder cb = session.getCriteriaBuilder();
         var criteria = cb.createQuery();
-        var practices  = criteria.from(Practice.class);
+        var practices = criteria.from(Practice.class);
         var employee = practices.join("teacher");
         criteria.select(practices).where(cb.equal(employee.get("id"), id));
         return session.createQuery(criteria).list();
@@ -258,7 +267,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         Session session = sessionFactory.openSession();
         CriteriaBuilder cb = session.getCriteriaBuilder();
         var criteria = cb.createQuery();
-        var theories  = criteria.from(Theory.class);
+        var theories = criteria.from(Theory.class);
         var employee = theories.join("teacher");
         criteria.select(theories).where(cb.equal(employee.get("id"), id));
         return session.createQuery(criteria).list();
