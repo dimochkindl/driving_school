@@ -8,6 +8,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -23,7 +24,12 @@ import java.util.List;
 public class CarDAOImpl implements CarDAO {
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
+
+    @Autowired
+    public CarDAOImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
 
     @Override
@@ -52,9 +58,10 @@ public class CarDAOImpl implements CarDAO {
 
                 cars.add(car);
             }
-            log.info("Cars result set: ", cars);
+            log.info("Cars result set: {}", cars);
             return cars;
         } catch (SQLException e) {
+            log.warn("couldn't retrieve cars: ", e);
             throw new RuntimeException(e);
         }
     }
@@ -82,6 +89,7 @@ public class CarDAOImpl implements CarDAO {
             }
 
         } catch (SQLException e) {
+            log.warn("couldn't retrieve car by id: ", e);
             throw new RuntimeException(e);
         }
         return null;
@@ -101,7 +109,7 @@ public class CarDAOImpl implements CarDAO {
 
             statement.executeUpdate();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            log.warn("couldn't update car: ", ex);
         }
     }
 
@@ -133,7 +141,7 @@ public class CarDAOImpl implements CarDAO {
 
             statement.executeUpdate();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            log.warn("couldn't save cars: ", ex);
         }
     }
 
@@ -141,7 +149,6 @@ public class CarDAOImpl implements CarDAO {
     public List<Practice> usedForPractices(Long id) {
         TypedQuery<Practice> query = entityManager.createQuery("select p from practice where car_id = :car_id", Practice.class);
         query.setParameter("car_id", id);
-        List<Practice> practices = query.getResultList();
-        return practices;
+        return query.getResultList();
     }
 }

@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bb48f91-61b1-4bc8-a949-85f1015e3d9a" name="Changes" comment="complete student/employee daoImpl">
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/EmployeeDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/EmployeeDAOImpl.java" afterDir="false" />
+    <list default="true" id="6bb48f91-61b1-4bc8-a949-85f1015e3d9a" name="Changes" comment="add logger for student/employee daos">
+      <change afterPath="$PROJECT_DIR$/src/test/java/app/v1/repositories/impl/ExamDAOImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/ExamDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/ExamDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/CarDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/CarDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/ExamDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/ExamDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/PracticeDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/PracticeDAOImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +82,7 @@
       <recent name="app.v1" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.StudentDAOImlTest.getVisitedPractices">
+  <component name="RunManager" selected="JUnit.ExamDAOImplTest.getEmployeeByExam">
     <configuration name="EmployeeDAOImplTest.getBySurnameAndLastName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="project" />
       <extension name="coverage">
@@ -93,7 +99,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EmployeeDAOImplTest.getPracticeLessons" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ExamDAOImplTest.getEmployeeByExam" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="project" />
       <extension name="coverage">
         <pattern>
@@ -102,8 +108,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="app.v1.repositories.impl" />
-      <option name="MAIN_CLASS_NAME" value="app.v1.repositories.impl.EmployeeDAOImplTest" />
-      <option name="METHOD_NAME" value="getPracticeLessons" />
+      <option name="MAIN_CLASS_NAME" value="app.v1.repositories.impl.ExamDAOImplTest" />
+      <option name="METHOD_NAME" value="getEmployeeByExam" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -158,19 +164,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.ExamDAOImplTest.getEmployeeByExam" />
       <item itemvalue="JUnit.StudentDAOImlTest.getVisitedPractices" />
       <item itemvalue="JUnit.StudentDAOImlTest.getExamResults" />
       <item itemvalue="JUnit.StudentDAOImlTest.getTheoryGrades" />
       <item itemvalue="JUnit.EmployeeDAOImplTest.getBySurnameAndLastName" />
-      <item itemvalue="JUnit.EmployeeDAOImplTest.getPracticeLessons" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ExamDAOImplTest.getEmployeeByExam" />
         <item itemvalue="JUnit.StudentDAOImlTest.getVisitedPractices" />
         <item itemvalue="JUnit.StudentDAOImlTest.getExamResults" />
         <item itemvalue="JUnit.StudentDAOImlTest.getTheoryGrades" />
         <item itemvalue="JUnit.EmployeeDAOImplTest.getBySurnameAndLastName" />
-        <item itemvalue="JUnit.EmployeeDAOImplTest.getPracticeLessons" />
       </list>
     </recent_temporary>
   </component>
@@ -428,7 +434,14 @@
       <option name="project" value="LOCAL" />
       <updated>1711019613829</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="add logger for student/employee daos">
+      <created>1711020640883</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1711020640883</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -453,7 +466,8 @@
     <MESSAGE value="add some criteria implementations and tested it" />
     <MESSAGE value="implements some methods and add 2nd level cache properties" />
     <MESSAGE value="complete student/employee daoImpl" />
-    <option name="LAST_COMMIT_MESSAGE" value="complete student/employee daoImpl" />
+    <MESSAGE value="add logger for student/employee daos" />
+    <option name="LAST_COMMIT_MESSAGE" value="add logger for student/employee daos" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -465,7 +479,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/EmployeeDAOImpl.java</url>
-          <line>132</line>
+          <line>134</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

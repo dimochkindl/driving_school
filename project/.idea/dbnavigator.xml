@@ -23,9 +23,7 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="e8b9cf04-a6e1-4bd0-b892-b2b108e45030" object-ref="schemas/public/tables/student_practice_relation" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="e8b9cf04-a6e1-4bd0-b892-b2b108e45030" dataset="public.student_practice_relation" active-filter-id="bba4c499-76ff-4840-a879-7871ba03845f">

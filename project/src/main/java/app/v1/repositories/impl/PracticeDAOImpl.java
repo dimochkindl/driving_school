@@ -8,6 +8,7 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import lombok.Cleanup;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -174,6 +175,12 @@ public class PracticeDAOImpl implements PracticeDAO {
 
     @Override
     public int getNumberOfPracticesByCarID(Long id) {
-        return 0;
+        @Cleanup var session = sessionFactory.openSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        var criteria = cb.createQuery();
+        var practices = criteria.from(Practice.class);
+        criteria.select(cb.count(practices)).where(cb.equal(practices.get("car").get("id"), id));
+        int count = (int) session.createQuery(criteria).getSingleResult();
+        return count;
     }
 }

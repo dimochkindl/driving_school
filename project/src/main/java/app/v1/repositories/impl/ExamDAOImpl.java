@@ -4,6 +4,10 @@ import app.v1.entities.Employee;
 import app.v1.entities.Exam;
 import app.v1.repositories.DbConnector;
 import app.v1.repositories.dao.ExamDAO;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -12,6 +16,15 @@ import java.util.List;
 
 @Repository
 public class ExamDAOImpl implements ExamDAO {
+
+    private final SessionFactory sessionFactory;
+
+    @Autowired
+    public ExamDAOImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
+
     @Override
     public List<Exam> getAll() {
         Connection connection = DbConnector.getConnection();
@@ -155,9 +168,14 @@ public class ExamDAOImpl implements ExamDAO {
     }
 
 
-    //hibernate
     @Override
-    public Employee getEmployeeByExam(Long id) {
-        return null;
+    public Object getEmployeeByExam(Long id) {
+        Session session = sessionFactory.openSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        var criteria = cb.createQuery();
+        var employees = criteria.from(Employee.class);
+        var relations = employees.join("examResults");
+        criteria.select(employees).where(cb.equal(relations.get("id").get("examId"), id));
+        return session.createQuery(criteria).getSingleResult();
     }
 }
