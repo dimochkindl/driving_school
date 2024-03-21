@@ -4,6 +4,9 @@ import app.v1.entities.Employee;
 import app.v1.entities.Post;
 import app.v1.entities.Practice;
 import app.v1.entities.Theory;
+import app.v1.entities.id.ExamResultId;
+import app.v1.entities.id.StudentPracticeRelationId;
+import app.v1.entities.id.StudentTheoryRelationId;
 import app.v1.services.BaseService;
 
 import java.util.List;
@@ -21,8 +24,8 @@ public interface EmployeeService extends BaseService<Employee> {
 
     List<Practice> getPracticeLessons(Long id);
 
-    void rateTheory(Long id, Long studentId, Long grade);
+    void rateTheory(StudentTheoryRelationId id, Long grade);
 
-    int rateExam(Long id, Long studentId, Long grade);
+    int rateExam(ExamResultId id, Long grade);
 
 }

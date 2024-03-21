@@ -5,14 +5,17 @@ import app.v1.entities.Post;
 import app.v1.repositories.impl.PostDAOImpl;
 import app.v1.services.BaseServiceImpl;
 import app.v1.services.interfaces.PostService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @ComponentScan(basePackages = "app.v1.repositories")
+@Slf4j
 public class PostServiceImpl extends BaseServiceImpl<Post> implements PostService {
 
     private final PostDAOImpl repo;
@@ -25,16 +28,46 @@ public class PostServiceImpl extends BaseServiceImpl<Post> implements PostServic
 
     @Override
     public List<Employee> getEmployeesByPostId(Long id) {
-        return null;
+        var result = repo.getEmployeesByPostId(id);
+        List<Employee> employees = new ArrayList<>();
+        log.info("list of employees: {}", result);
+        for (var value : result) {
+            if (value instanceof Employee employee) {
+                employees.add(employee);
+            } else {
+                log.warn("list is null or value is not instance of Employee");
+            }
+        }
+        return employees;
     }
 
     @Override
     public List<Employee> getBySpecialization(String spec) {
-        return null;
+        var result = repo.getBySpecialization(spec);
+        List<Employee> employees = new ArrayList<>();
+        log.info("list of employees: {}", result);
+        for (var value : result) {
+            if (value instanceof Employee employee) {
+                employees.add(employee);
+            } else {
+                log.warn("list is null or value is not instance of Employee");
+            }
+        }
+        return employees;
     }
 
     @Override
     public List<Employee> getByPost(String post) {
-        return null;
+        var result = repo.getByPost(post);
+        List<Employee> employees = new ArrayList<>();
+        log.info("list of employees: {}", result);
+        for (var value : result) {
+            if (value instanceof Employee employee) {
+                employees.add(employee);
+            } else {
+                log.warn("list is null or value is not instance of Employee");
+            }
+        }
+        return employees;
     }
 }
