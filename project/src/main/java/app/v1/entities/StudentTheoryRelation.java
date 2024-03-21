@@ -2,13 +2,17 @@ package app.v1.entities;
 
 import app.v1.entities.id.StudentTheoryRelationId;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "student_theory_relation")
 @Data
+@Builder
+@ToString(exclude = {"student", "teacher", "theory"})
+@AllArgsConstructor
+@NoArgsConstructor
 public class StudentTheoryRelation {
     @EmbeddedId
     private StudentTheoryRelationId id;
@@ -19,17 +23,17 @@ public class StudentTheoryRelation {
     @Column(name = "grade")
     private short grade;
 
-    @MapsId("studentId")
+    @MapsId("student")
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Student student;
 
-    @MapsId("teacherId")
+    @MapsId("teacher")
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     private Employee teacher;
 
-    @MapsId("theoryId")
+    @MapsId("theory")
     @ManyToOne
     @JoinColumn(name = "theory_id")
     private Theory theory;
@@ -49,4 +53,7 @@ public class StudentTheoryRelation {
         theory.getTheoryRelations().add(this);
     }
 
+    public StudentTheoryRelationId getId() {
+        return id;
+    }
 }

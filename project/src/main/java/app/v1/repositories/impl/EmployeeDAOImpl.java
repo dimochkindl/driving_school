@@ -2,16 +2,22 @@ package app.v1.repositories.impl;
 
 import app.v1.dto.filters.EmployeeFilter;
 import app.v1.entities.*;
-import app.v1.repositories.QPredicate;
+import app.v1.entities.id.ExamResultId;
+import app.v1.entities.id.StudentTheoryRelationId;
 import app.v1.repositories.dao.EmployeeDAO;
-import com.querydsl.core.types.Predicate;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.Predicate;
 import lombok.Cleanup;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +25,14 @@ import static app.v1.repositories.DbConnector.getConnection;
 
 @Repository
 public class EmployeeDAOImpl implements EmployeeDAO {
+
+    private final SessionFactory sessionFactory;
+
+    @Autowired
+    public EmployeeDAOImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
     @Override
     public List<Employee> getAll() {
         Connection connection = getConnection();
@@ -153,30 +167,29 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     public Post getPost(Long id) {
         Connection connection = getConnection();
         String query = "select * from post p join employee e on p.id = e.post_id where e.id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setLong(1, id);
+        if (connection != null) {
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setLong(1, id);
 
-            ResultSet rs = statement.executeQuery();
+                ResultSet rs = statement.executeQuery();
 
-            if (rs.next()) { // Проверяем, есть ли следующая запись
-                Long post_id = rs.getLong("id");
-                String specialization = rs.getString("specialization");
-                String name = rs.getString("name");
-                var post = Post.builder().id(id).specialization(specialization).name(name).build();
-                return post;
-            } else {
-                // Можно выбрать другое действие, например, бросить исключение или вернуть null, в зависимости от вашего случая использования.
-                System.out.println("Запись с id=" + id + " не найдена.");
-                return null;
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } finally {
-            // Не забывайте закрывать ресурсы, например, Connection, после использования
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+                if (rs.next()) {
+                    Long post_id = rs.getLong("id");
+                    String specialization = rs.getString("specialization");
+                    String name = rs.getString("name");
+                    return Post.builder().id(post_id).specialization(specialization).name(name).build();
+                } else {
+                    System.out.println("Запись с id=" + id + " не найдена.");
+                    return null;
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return null;
@@ -187,10 +200,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     public void retireFromTheory(Long id) {
         Connection connection = getConnection();
         String query = "delete from student_theory_relation where teacher_id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
-            int rowsChanged = statement.executeUpdate();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        if (connection != null) {
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                int rowsChanged = statement.executeUpdate();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
@@ -198,8 +213,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     public void retireFromPractice(Long id) {
         Connection connection = getConnection();
         String query = "delete from student_practice_relation where teacher_id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
-            int rowsChanged = statement.executeUpdate();
+        try {
+            assert connection != null;
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                int rowsChanged = statement.executeUpdate();
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -207,33 +225,60 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 
     @Override
-    public List<Employee> getBySurnameAndLastName(EmployeeFilter filter) {
-        /*List<Predicate> predicates = new ArrayList<>();
-        Employee employee = new Employee();
+    public List<Object> getBySurnameAndLastName(EmployeeFilter filter) {
+        Session session = sessionFactory.openSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        var criteria = cb.createQuery();
+        var employees  = criteria.from(Employee.class);
+        List<Predicate> predicates = new ArrayList<>();
         if(filter.getFirstname() != null){
-            predicates.add(employee.getName());
-        }*/
-        return null;
+            predicates.add(cb.equal(employees.get("name"), filter.getFirstname()));
+        }
+        if(filter.getLastname() != null){
+            predicates.add(cb.equal(employees.get("surname"), filter.getLastname()));
+        }
+        criteria.select(employees).where(cb.and(predicates.toArray(new Predicate[0])));
+        return session.createQuery(criteria).list();
     }
 
     //for hibernate
     @Override
-    public List<Practice> getPracticeLessons(Long id) {
-        return null;
+    public List<Object> getPracticeLessons(Long id) {
+        Session session = sessionFactory.openSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        var criteria = cb.createQuery();
+        var practices  = criteria.from(Practice.class);
+        var employee = practices.join("teacher");
+        criteria.select(practices).where(cb.equal(employee.get("id"), id));
+        return session.createQuery(criteria).list();
     }
 
     @Override
-    public List<Theory> getTheoryLessons(Long id) {
-        return null;
+    public List<Object> getTheoryLessons(Long id) {
+        Session session = sessionFactory.openSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        var criteria = cb.createQuery();
+        var theories  = criteria.from(Theory.class);
+        var employee = theories.join("teacher");
+        criteria.select(theories).where(cb.equal(employee.get("id"), id));
+        return session.createQuery(criteria).list();
     }
 
     @Override
-    public void rateTheory(Long id, Long studentId, Long grade) {
-
+    public void rateTheory(StudentTheoryRelationId id, Long grade) {
+        Session session = sessionFactory.openSession();
+        var relation = StudentTheoryRelation.builder().id(id).grade(grade.shortValue()).date(LocalDate.now()).build();
+        session.beginTransaction();
+        session.persist(relation);
+        session.getTransaction().commit();
     }
 
     @Override
-    public int rateExam(Long id, Long studentId, Long grade) {
-        return 0;
+    public int rateExam(ExamResultId id, Long grade) {
+        Session session = sessionFactory.openSession();
+        var exam = session.get(Exam.class, id.getExamId());
+        exam.setGrade(grade);
+        session.getTransaction().commit();
+        return grade.intValue();
     }
 }

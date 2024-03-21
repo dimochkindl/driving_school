@@ -3,6 +3,9 @@ package app.v1.repositories.impl;
 import app.v1.entities.*;
 import app.v1.repositories.DbConnector;
 import app.v1.repositories.dao.StudentDAO;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import lombok.extern.slf4j.Slf4j;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,11 +14,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 
 @Repository
+@Slf4j
 public class StudentDAOIml extends DbConnector implements StudentDAO {
     private SessionFactory sessionFactory;
+
     @Autowired
     public StudentDAOIml(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
@@ -310,36 +316,52 @@ public class StudentDAOIml extends DbConnector implements StudentDAO {
         return new Student(id, name, surname, phoneNumber, category);
     }
 
-    public Long getLastId() {
-        Connection connection = getConnection();
-        String query = "SELECT id FROM student ORDER BY id DESC LIMIT 1;\n";
-        try (PreparedStatement statement = Objects.requireNonNull(connection).prepareStatement(query)) {
-            ResultSet rs = statement.executeQuery();
-
-            if (rs.next()) {
-                long lastId = rs.getLong("id");
-                return lastId;
-            }
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return null;
-    }
-
     //Methods for hibernate
     @Override
-    public List<Integer> getTheoryGrades(Long id) {
-        return null;
+    public List<Integer> getTheoryGrades(int id) {
+        Session session = sessionFactory.openSession();
+
+        //not work
+
+        /*CriteriaBuilder cb = session.getCriteriaBuilder();
+        var criteria = cb.createQuery();
+        var grades = criteria.from(StudentTheoryRelation.class);
+        criteria.select(grades).where(cb.equal(grades.get("id").get("student"), id));*/
+
+        var list = session.createQuery("SELECT r from StudentTheoryRelation r WHERE r.student.id = :studentId", StudentTheoryRelation.class)
+                .setParameter("studentId", id).list();
+
+        List<Integer> grades = list.stream()
+                .mapToInt(StudentTheoryRelation::getGrade)
+                .boxed()
+                .collect(Collectors.toList());
+
+        log.info("\n\nlist:{}\n\n", list);
+        return grades;
+
     }
 
     @Override
-    public List<Integer> getExamResults(Long id) {
-        return null;
+    public List<Object> getExamResults(Long id) {
+        Session session = sessionFactory.openSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        var criteria = cb.createQuery();
+        var grades = criteria.from(Exam.class);
+        var results = grades.join("examResultsList");
+        criteria.select(grades).where(cb.equal(results.get("id").get("studentId"), id));
+        return session.createQuery(criteria).list();
     }
 
     @Override
     public int getVisitedPractices(Long id) {
-        return 0;
+        Session session = sessionFactory.openSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        var criteria = cb.createQuery();
+        var practices = criteria.from(Practice.class);
+        var relation = practices.join("practiceRelations");
+        criteria.select(cb.count(practices)).where(cb.equal(relation.get("id").get("studentId"), id));
+        Long count = (Long) session.createQuery(criteria).getSingleResult();
+        session.close();
+        return count.intValue();
     }
 }

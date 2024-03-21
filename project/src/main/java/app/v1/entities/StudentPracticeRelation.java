@@ -2,11 +2,13 @@ package app.v1.entities;
 
 import app.v1.entities.id.StudentPracticeRelationId;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 
 @Entity
 @Table(name = "student_practice_relation")
 @Data
+@Builder
 public class StudentPracticeRelation {
     @EmbeddedId
     private StudentPracticeRelationId id;

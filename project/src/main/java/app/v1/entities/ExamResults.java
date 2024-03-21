@@ -1,16 +1,15 @@
 package app.v1.entities;
 
 import app.v1.entities.id.ExamResultId;
+
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "exam_results")
-@Getter
-@Setter
+@Data
+@Builder
+@ToString(exclude = {"student", "teacher", "exam"})
 @AllArgsConstructor
 @NoArgsConstructor
 public class ExamResults {

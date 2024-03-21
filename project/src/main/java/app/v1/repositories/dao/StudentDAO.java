@@ -8,9 +8,9 @@ import java.util.List;
 public interface StudentDAO extends BaseRepository<Student> {
     List<Student> getBySurname(String surname);
 
-    List<Integer> getTheoryGrades(Long id);
+    List<Integer> getTheoryGrades(int id);
 
-    List<Integer> getExamResults(Long id);
+    List<Object> getExamResults(Long id);
 
     int getVisitedPractices(Long id);
     List<Exam> getExams(Long id);

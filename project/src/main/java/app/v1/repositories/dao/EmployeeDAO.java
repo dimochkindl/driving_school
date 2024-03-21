@@ -3,17 +3,17 @@ package app.v1.repositories.dao;
 import app.v1.dto.filters.EmployeeFilter;
 import app.v1.entities.Employee;
 import app.v1.entities.Post;
-import app.v1.entities.Practice;
-import app.v1.entities.Theory;
+import app.v1.entities.id.ExamResultId;
+import app.v1.entities.id.StudentTheoryRelationId;
 import app.v1.repositories.BaseRepository;
 
 import java.util.List;
 
 public interface EmployeeDAO extends BaseRepository<Employee> {
 
-    List<Theory> getTheoryLessons(Long id);
+    List<Object> getTheoryLessons(Long id);
 
-    List<Employee> getBySurnameAndLastName(EmployeeFilter filter);
+    List<Object> getBySurnameAndLastName(EmployeeFilter filter);
 
     List<Employee> getBySurname(String surname);
 
@@ -23,10 +23,10 @@ public interface EmployeeDAO extends BaseRepository<Employee> {
 
     void retireFromPractice(Long id);
 
-    List<Practice> getPracticeLessons(Long id);
+    List<Object> getPracticeLessons(Long id);
 
-    void rateTheory(Long id, Long studentId, Long grade);
+    void rateTheory(StudentTheoryRelationId id, Long grade);
 
-    int rateExam(Long id, Long studentId, Long grade);
+    int rateExam(ExamResultId id, Long grade);
 
 }
