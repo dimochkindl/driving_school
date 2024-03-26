@@ -1,9 +1,6 @@
 package app.v1.services.interfaces;
 
-import app.v1.entities.Employee;
-import app.v1.entities.Post;
-import app.v1.entities.Practice;
-import app.v1.entities.Theory;
+import app.v1.entities.*;
 import app.v1.entities.id.ExamResultId;
 import app.v1.entities.id.StudentPracticeRelationId;
 import app.v1.entities.id.StudentTheoryRelationId;
@@ -13,6 +10,8 @@ import java.util.List;
 
 public interface EmployeeService extends BaseService<Employee> {
     List<Theory> getTheoryLessons(Long id);
+
+    List<Exam> getExams(Long id);
 
     List<Employee> getBySurname(String surname);
 

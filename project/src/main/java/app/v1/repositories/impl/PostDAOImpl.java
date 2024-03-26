@@ -122,7 +122,7 @@ public class PostDAOImpl implements PostDAO {
     @Override
     public void update(Post post) {
         Connection connection = DbConnector.getConnection();
-        String query = "update post set specialization = ?, name = ? where id = ?)";
+        String query = "update post set specialization = ?, name = ? where id = ?";
         try (PreparedStatement statement = Objects.requireNonNull(connection).prepareStatement(query)) {
             statement.setString(1, post.getSpecialization());
             statement.setString(2, post.getSpecialization());

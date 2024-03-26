@@ -23,17 +23,17 @@ public class StudentTheoryRelation {
     @Column(name = "grade")
     private short grade;
 
-    @MapsId("student")
+    @MapsId("studentId")
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Student student;
 
-    @MapsId("teacher")
+    @MapsId("teacherId")
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     private Employee teacher;
 
-    @MapsId("theory")
+    @MapsId("theoryId")
     @ManyToOne
     @JoinColumn(name = "theory_id")
     private Theory theory;

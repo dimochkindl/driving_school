@@ -1,9 +1,6 @@
 package app.v1.services.impl;
 
-import app.v1.entities.Employee;
-import app.v1.entities.Post;
-import app.v1.entities.Practice;
-import app.v1.entities.Theory;
+import app.v1.entities.*;
 import app.v1.entities.id.ExamResultId;
 import app.v1.entities.id.StudentTheoryRelationId;
 import app.v1.repositories.impl.EmployeeDAOImpl;
@@ -98,5 +95,21 @@ public class EmployeeServiceImpl extends BaseServiceImpl<Employee> implements Em
     public int rateExam(ExamResultId id, Long grade) {
         repository.rateExam(id, grade);
         return grade.intValue();
+    }
+
+    @Override
+    public List<Exam> getExams(Long id) {
+        List<Exam> exams = new ArrayList<>();
+        if(id != 0){
+            var list = repository.getExams(id);
+            for(var value : list){
+                if (value instanceof Exam exam) {
+                    exams.add(exam);
+                } else {
+                    log.warn("value is not the instance of Theory");
+                }
+            }
+        }
+        return exams;
     }
 }

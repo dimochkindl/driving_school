@@ -16,7 +16,7 @@ import java.io.Serializable;
 public class StudentTheoryRelationId implements Serializable {
     @Serial
     private static final long serialVersionUID = 782733403616952935L;
-    private Long student;
-    private Long teacher;
-    private Long theory;
+    private Long studentId;
+    private Long teacherId;
+    private Long theoryId;
 }

@@ -1,7 +1,10 @@
 package app.v1.controllers.admin;
 
 import app.v1.entities.Employee;
+import app.v1.entities.Post;
+import app.v1.entities.Practice;
 import app.v1.services.impl.EmployeeServiceImpl;
+import app.v1.services.impl.PostServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,9 +18,12 @@ public class AdminEmployeeController {
 
     private final EmployeeServiceImpl employeeService;
 
+    private final PostServiceImpl postService;
+
     @Autowired
-    public AdminEmployeeController(EmployeeServiceImpl employeeService) {
+    public AdminEmployeeController(EmployeeServiceImpl employeeService, PostServiceImpl postService) {
         this.employeeService = employeeService;
+        this.postService = postService;
     }
 
 
@@ -34,21 +40,18 @@ public class AdminEmployeeController {
         return "redirect:/admin/";
     }
 
-    @PostMapping("/editEmployee")
-    public String editEmployee(@ModelAttribute Employee employee) {
+    @PostMapping("/edit")
+    public String editEmployee(@ModelAttribute Employee employee, @ModelAttribute Post post) {
+        employeeService.update(employee);
+        postService.update(post);
+        return "redirect:/admin/";
+    }
 
-        Long id = employee.getId();
-        String name = employee.getName();
-        String surname = employee.getSurname();
-        String phone = employee.getPhone();
-        float experience = employee.getExperience();
-        Long postId = employee.getPost().getId();
+    //do it
+    @PostMapping("/editPractices")
+    public String editEmployeePractice(@ModelAttribute Employee employee, @ModelAttribute Practice practice) {
+        employeeService.update(employee);
 
-        System.out.println("ediiiiiiit");
-
-        // Ваша логика для обновления сотрудника в базе данных
-
-        // После обновления сотрудника, можно вернуться на страницу сотрудников
         return "redirect:/admin/";
     }
 }

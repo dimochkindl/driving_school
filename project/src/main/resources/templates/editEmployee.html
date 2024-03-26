@@ -2,78 +2,113 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Add Employee</title>
-    <!-- Ваши стили здесь, если необходимо -->
-</head>
-<style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
+    <title>Edit Employee</title>
+    <style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f1f1f1;
+    }
 
-        h1 {
-            text-align: center;
-        }
+    h2 {
+    margin-top: 30px;
+    text-align: center;
+    color: #333333;
+    }
 
-        h2 {
-            margin-top: 30px;
-        }
+    h3 {
+    margin-top: 30px;
+    text-align: center;
+    color: #333333;
+    }
 
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
+    form {
+    margin-top: 20px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    width: fit-content;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; /* Центрирование по горизонтали */
+    }
 
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
+    label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+    color: #555555;
+    text-align: center; /* Выравнивание по центру */
+    width: fit-content; /* Ширина, соответствующая содержимому */
+    margin: 0 auto; /* Центрирование по горизонтали */
+    }
 
-        th {
-            background-color: #f2f2f2;
-        }
+    input[type="text"] {
+    padding: 8px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: center;
+    }
 
-        button {
-            padding: 5px 10px;
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            cursor: pointer;
-            margin-right: 5px;
-        }
+    button[type="submit"] {
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 3px;
+    text-align: center;
+    display: block;
+    margin: 0 auto; /* Центрирование по горизонтали */
+    }
 
-        button:hover {
-            background-color: #45a049;
-        }
-
-        form {
-            margin-top: 20px;
-        }
-
-        label {
-            font-weight: bold;
-        }
-
-        input[type="text"] {
-            padding: 5px;
-            width: 200px;
-        }
-
-        button[type="submit"] {
-            margin-top: 10px;
-        }
+    button[type="submit"]:hover {
+    background-color: #45a049;
+    }
     </style>
+</head>
 <body>
-<h2>Edit employee</h2>
+<h2>Edit Employee</h2>
+<h3>Employee</h3>
 <form th:action="@{/admin/employee/edit}" method="post">
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" th:value="${employee.getName()}"/>
+    <label for="surname">Surname:</label>
+    <input type="text" name="surname" id="surname" th:value="${employee.getSurname()}"/>
+    <label for="phone">Phone:</label>
+    <input type="text" name="phone" id="phone" th:value="${employee.getPhone()}"/>
+    <label for="experience">Experience:</label>
+    <input type="text" name="experience" id="experience" th:value="${employee.getExperience()}"/>
     <input type="hidden" name="id" th:value="${employee.getId()}"/>
-    <input type="text" name="name" th:value="${employee.getName}"/>
-    <input type="text" name="surname" th:value="${employee.getSurname}"/>
-    <input type="text" name="phone" th:value="${employee.getPhone}"/>
-    <input type="text" name="experience" th:value="${employee.getExperience}"/>
-    <input type="hidden" name="postId" th:value="${service.getPost(employee.getId()).getId()}"/>
+    <label for="postName">Post:</label>
+    <input type="text" name="postName" id="postName" th:value="${post.getName()}"/>
+    <label for="postSpec">Specialization:</label>
+    <input type="text" name="postSpec" id="postSpec" th:value="${post.getSpecialization()}"/>
     <button type="submit">Edit</button>
 </form>
+<!--<h3>Theories</h3>-->
+<!--<form th:action="@{/admin/employee/editTheories}" method="post">-->
+<!--    <label for="theme">Theme:</label>-->
+<!--    <input type="text" name="theme" id="theme" th:value="${theories.getTheme()}"/>-->
+<!--    <label for="price">Price:</label>-->
+<!--    <input type="text" name="surname" id="price" th:value="${theories.getPrice()}"/>-->
+<!--    <button type="submit">Edit</button>-->
+<!--</form>-->
+
+<h3>Practices</h3>
+<tr th:each="practice : ${practices}">
+    <form th:action="@{/admin/employee/editPractices}" method="post">
+        <label for="date">Date:</label>
+        <input type="text" name="date" id="date" th:value="${practice.getDate()}"/>
+        <label for="PracticePrice">Price:</label>
+        <input type="text" name="price" id="PracticePrice" th:value="${practice.getPrice()}"/>
+
+        <!-- <label for="Car">Car:</label>
+         <input type="text" name="car" id="Car" th:value="${service.get()}"/>
+         -->
+        <button type="submit">Edit</button>
+    </form>
+</tr>
 </body>
 </html>

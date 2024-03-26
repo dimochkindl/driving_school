@@ -23,45 +23,17 @@
         <th>Manipulate</th>
     </tr>
     <tr th:each="employee : ${employees}">
-        <td>
-            <span id="name-${employee.getId()}" th:text="${employee.getName}"></span>
-            <input type="text" name="name" id="edit-name-${employee.getId()}" th:value="${employee.getName}"
-                   style="display: none"/>
-        </td>
+        <td th:text="${employee.getName}"></td>
+        <td th:text="${employee.getSurname}"></td>
+        <td th:text="${employee.getPhone}"></td>
+        <td th:text=" ${employee.getExperience}"></td>
+
+        <td th:text="${service.getPost(employee.getId()).getName}"></td>
 
         <td>
-            <span id="surname-${employee.getId()}" th:text="${employee.getSurname}"></span>
-            <input type="text" name="surname" id="edit-surname-${employee.getId()}"
-                   th:value="${employee.getSurname}" style="display: none"/>
-        </td>
-
-        <td>
-            <span id="phone-${employee.getId()}" th:text="${employee.getPhone}"></span>
-            <input type="text" name="phone" id="edit-phone-${employee.getId()}" th:value="${employee.getPhone}"
-                   style="display: none"/>
-        </td>
-
-        <td>
-            <span id="experience-${employee.getId()}" th:text="${employee.getExperience}"></span>
-            <input type="text" name="experience" id="edit-experience-${employee.getId()}"
-                   th:value="${employee.getExperience}" style="display: none"/>
-        </td>
-
-        <td>
-                <span id="post-${employee.getId()}"
-                      th:text="${service.getPost(employee.getId()).getName}"></span>
-            <input type="text" name="postId" id="edit-postId-${employee.getId()}"
-                   th:value="${service.getPost(employee.getId()).getId()}" style="display: none"/>
-        </td>
-
-        <td>
-            <form th:action="@{/admin/employee/editEmployee}" method="post">
+            <form th:action="@{/admin/employee/editEmployee}" method="get">
                 <input type="hidden" name="id" th:value="${employee.getId()}"/>
-                <button type="button" onclick="enableEdit(${employee.getId()})">Edit</button>
-                <button type="button" id="save-btn-${employee.getId()}" style="display: none"
-                        onclick="saveChanges(${employee.getId()})">Save Changes
-                </button>
-                <button type="submit" style="display: none">Save</button>
+                <button type="submit">Edit</button>
             </form>
 
             <form th:action="@{/admin/employee/deleteEmployee}" method="post">
@@ -128,6 +100,12 @@
         </td>
     </tr>
 </table>
+
+<h2>Add post</h2>
+<a th:href="@{/admin/post/addPost}">
+    <button>Add post</button>
+</a>
+
 <button id="toggle-dark-mode-btn" onclick="toggleDarkMode()">Change Mode</button>
 </body>
 </html>

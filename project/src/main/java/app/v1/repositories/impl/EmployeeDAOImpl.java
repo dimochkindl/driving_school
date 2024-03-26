@@ -257,8 +257,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         CriteriaBuilder cb = session.getCriteriaBuilder();
         var criteria = cb.createQuery();
         var practices = criteria.from(Practice.class);
-        var employee = practices.join("teacher");
-        criteria.select(practices).where(cb.equal(employee.get("id"), id));
+        var relations = practices.join("practiceRelations");
+        criteria.select(practices).where(cb.equal(relations.get("id").get("teacherId"), id));
         return session.createQuery(criteria).list();
     }
 
@@ -268,8 +268,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         CriteriaBuilder cb = session.getCriteriaBuilder();
         var criteria = cb.createQuery();
         var theories = criteria.from(Theory.class);
-        var employee = theories.join("teacher");
-        criteria.select(theories).where(cb.equal(employee.get("id"), id));
+        var relations = theories.join("theoryRelations");
+        criteria.select(theories).where(cb.equal(relations.get("id").get("teacherId"), id));
         return session.createQuery(criteria).list();
     }
 
@@ -289,5 +289,16 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         exam.setGrade(grade);
         session.getTransaction().commit();
         return grade.intValue();
+    }
+
+    @Override
+    public List<Object> getExams(Long id) {
+        Session session = sessionFactory.openSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        var criteria = cb.createQuery();
+        var exams = criteria.from(Exam.class);
+        var relations = exams.join("examResultsList");
+        criteria.select(exams).where(cb.equal(relations.get("id").get("teacherId"), id));
+        return session.createQuery(criteria).list();
     }
 }

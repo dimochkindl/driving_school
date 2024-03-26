@@ -15,6 +15,8 @@ public interface EmployeeDAO extends BaseRepository<Employee> {
 
     List<Object> getBySurnameAndLastName(EmployeeFilter filter);
 
+    List<Object> getExams(Long id);
+
     List<Employee> getBySurname(String surname);
 
     Post getPost(Long id);

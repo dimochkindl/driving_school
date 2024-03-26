@@ -32,6 +32,11 @@
       </filter>
     </filter-actions>
     <filter-actions connection-id="e8b9cf04-a6e1-4bd0-b892-b2b108e45030" dataset="public.car" active-filter-id="" />
+    <filter-actions connection-id="e8b9cf04-a6e1-4bd0-b892-b2b108e45030" dataset="public.post" active-filter-id="c0085d3b-89dd-438f-a9e3-6cc1d0e1c2f2">
+      <filter id="c0085d3b-89dd-438f-a9e3-6cc1d0e1c2f2" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="id" operator="is not null" value="" active="true" />
+      </filter>
+    </filter-actions>
     <filter-actions connection-id="f809b993-a847-4ce7-8dd2-2534606d0b85" dataset="public.student_practice_relation" active-filter-id="5d4684a8-0020-4738-808a-25d3ff8a5b6c">
       <filter id="5d4684a8-0020-4738-808a-25d3ff8a5b6c" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
         <condition column="id" operator="is not null" value="" active="true" />
@@ -76,6 +81,9 @@
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
+  </component>
+  <component name="DBNavigator.Project.FileConnectionMappingManager">
+    <mapping file-url="file://$PROJECT_DIR$/src/main/resources/scripts.sql" connection-id="f809b993-a847-4ce7-8dd2-2534606d0b85" session-id="MAIN" current-schema="public" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
@@ -649,5 +657,8 @@
         </visibility-settings>
       </environment>
     </general-settings>
+  </component>
+  <component name="DBNavigator.Project.StatementExecutionManager">
+    <execution-variables />
   </component>
 </project>

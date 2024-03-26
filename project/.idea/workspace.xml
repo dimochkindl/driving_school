@@ -4,13 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bb48f91-61b1-4bc8-a949-85f1015e3d9a" name="Changes" comment="write daos">
+    <list default="true" id="6bb48f91-61b1-4bc8-a949-85f1015e3d9a" name="Changes" comment="write some services">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/addPost.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/controllers/admin/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/controllers/admin/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/controllers/admin/AdminEmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/controllers/admin/AdminEmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/controllers/admin/AdminPostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/controllers/admin/AdminPostController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/StudentTheoryRelation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/StudentTheoryRelation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/entities/id/StudentTheoryRelationId.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/entities/id/StudentTheoryRelationId.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/EmployeeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/dao/EmployeeDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/EmployeeDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/EmployeeDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/PostDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/repositories/impl/PostDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/services/impl/EmployeeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/services/impl/EmployeeServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/services/impl/PostServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/services/impl/PostServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/services/impl/StudentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/services/impl/StudentServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/v1/services/interfaces/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/v1/services/interfaces/EmployeeService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/editEmployee.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/editEmployee.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +35,7 @@
         <option value="Interface" />
         <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -51,20 +61,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Repository github/driving_school/project&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "last_opened_file_path": "D:/Unik/6_sem/spoirs/client",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.Mappings"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -91,6 +101,22 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EmployeeDAOImplTest.getPracticeLessons" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.v1.repositories.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="app.v1.repositories.impl" />
+      <option name="MAIN_CLASS_NAME" value="app.v1.repositories.impl.EmployeeDAOImplTest" />
+      <option name="METHOD_NAME" value="getPracticeLessons" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -127,22 +153,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StudentDAOImlTest.getTheoryGrades" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="app.v1.repositories.impl.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="app.v1.repositories.impl" />
-      <option name="MAIN_CLASS_NAME" value="app.v1.repositories.impl.StudentDAOImlTest" />
-      <option name="METHOD_NAME" value="getTheoryGrades" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="StudentDAOImlTest.getVisitedPractices" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="project" />
       <extension name="coverage">
@@ -161,18 +171,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.V1Application" />
+      <item itemvalue="JUnit.EmployeeDAOImplTest.getPracticeLessons" />
       <item itemvalue="JUnit.ExamDAOImplTest.getEmployeeByExam" />
       <item itemvalue="JUnit.StudentDAOImlTest.getVisitedPractices" />
       <item itemvalue="JUnit.StudentDAOImlTest.getExamResults" />
-      <item itemvalue="JUnit.StudentDAOImlTest.getTheoryGrades" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.V1Application" />
+        <item itemvalue="JUnit.EmployeeDAOImplTest.getPracticeLessons" />
         <item itemvalue="JUnit.ExamDAOImplTest.getEmployeeByExam" />
         <item itemvalue="JUnit.StudentDAOImlTest.getVisitedPractices" />
         <item itemvalue="JUnit.StudentDAOImlTest.getExamResults" />
-        <item itemvalue="JUnit.StudentDAOImlTest.getTheoryGrades" />
       </list>
     </recent_temporary>
   </component>
@@ -444,7 +454,14 @@
       <option name="project" value="LOCAL" />
       <updated>1711053536515</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="write some services">
+      <created>1711057157002</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1711057157002</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -471,7 +488,8 @@
     <MESSAGE value="complete student/employee daoImpl" />
     <MESSAGE value="add logger for student/employee daos" />
     <MESSAGE value="write daos" />
-    <option name="LAST_COMMIT_MESSAGE" value="write daos" />
+    <MESSAGE value="write some services" />
+    <option name="LAST_COMMIT_MESSAGE" value="write some services" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -490,6 +508,11 @@
           <url>file://$PROJECT_DIR$/src/test/java/app/v1/repositories/impl/EmployeeDAOImplTest.java</url>
           <line>66</line>
           <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/app/v1/controllers/admin/AdminController.java</url>
+          <line>89</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
